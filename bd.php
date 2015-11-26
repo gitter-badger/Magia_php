@@ -1,0 +1,1 @@
+<?php  $hostname = "localhost"; $dbname = "gestionInmoweb"; $username = "root"; $password = ""; ?>
