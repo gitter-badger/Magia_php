@@ -4,6 +4,7 @@
 </h1>
 
 
+
 <div class="table-responsive"> 		  
 <table class="table table-striped table-hover">
 <thead>
@@ -32,6 +33,7 @@ foreach($resultado as $reg ) {
 </div>
 
 
+ *  
 <textarea class="form-control" rows="20">
 <div class="table-responsive"> 		  
 <table class="table table-striped table-hover">

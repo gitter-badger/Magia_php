@@ -4,7 +4,8 @@
 </h1>
 
 
-<div class="table-responsive"> 		  
+<?php 
+/*<div class="table-responsive"> 		  
 <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -24,7 +25,8 @@ foreach($resultado as $reg ) {
 </div>
 
 
-
+*/
+?>
 
 
 
@@ -66,7 +68,9 @@ $mensaje = "Realizado con exito";<br>
 
 
 <hr>
-No olvidar la ultima coma, 
+No olvidar la ultima coma, <bR>
+
+delete the las ',' make error
 
 
 

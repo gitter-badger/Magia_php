@@ -1,5 +1,5 @@
 <h1 class="page-header">
-    <span class="glyphicon glyphicon-user"></span> Tablas 
+    <span class="glyphicon glyphicon-user"></span> Tables 
 </h1>
 
 
@@ -9,15 +9,15 @@
             <thead>
                 <tr>
                     <th> #</th>
-                    <th> Tabla</th>
-                    <th> Pagina</th>
+                    <th> Table</th>
                     
-                    <th> Todos</th>
+                    
+                    <th> All</th>
                     <th> Ver</th>
-                    <th> Crear</th>
+                    <th> New</th>
                     
-                    <th> Editar </th>
-                    <th> Borrar</th>
+                    <th> Edit </th>
+                    <th> Delete</th>
                     <th> Datos</th>
                     <th> Datos</th>
 
@@ -36,13 +36,10 @@ foreach($resultado as $reg ) {
         <td>$i</td>
         <td>$reg[0]</td>
         <td>
-            <a href=\"?p=magiaLista&tabla=$reg[0]\">$reg[0].php</a>
+        <a href=\"?p=magiaTabla&tabla=$reg[0]\">Table Translate</a><br>
+            <a href=\"?p=magiaTabla2&tabla=$reg[0]\">Tabla not translate</a>
         </td>
-        <td>
-        <a href=\"?p=magiaTabla&tabla=$reg[0]\">Tabla Tranlate</a><br>
-            <a href=\"?p=magiaTabla2&tabla=$reg[0]\">Tabla sin translate</a>
-        </td>
-        <td><a href=\"?p=magiaFormAdd&tabla=$reg[0]\">Detalles</a></td>
+        <td><a href=\"?p=magiaDetalles&tabla=$reg[0]\">Details ---</a></td>
         <td><a href=\"?p=magiaFormAdd&tabla=$reg[0]\">Form</a><br>
             <a href=\"?p=magiaInserInto&tabla=$reg[0]\">Insert</a>
                 </td>    
@@ -52,7 +49,7 @@ foreach($resultado as $reg ) {
             
 
         <td><a href=\"?p=magiaInserInto&tabla=$reg[0]\">Request</a></td>
-        <td><a href=\"?p=magiaReg&tabla=$reg[0]\">registro</a></td>
+        <td><a href=\"?p=magiaReg&tabla=$reg[0]\">reg[xxx]</a></td>
         <td><a href=\"?p=magiaGET&tabla=$reg[0]\">Get</a><br>
             <a href=\"?p=magiaPost&tabla=$reg[0]\">Post</a><br>
             <a href=\"?p=magiaGET&tabla=$reg[0]\">Resuest</a>

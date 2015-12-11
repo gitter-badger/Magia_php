@@ -19,9 +19,9 @@
   </div>
     
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Clave</label>
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-        <input type="text" name="password" class="form-control" id="password" placeholder="Clave" value="<?php echo $password; ?>">
+        <input type="text" name="password" class="form-control" id="password" placeholder="password" value="<?php echo $password; ?>">
     </div>
   </div>
     
@@ -34,7 +34,7 @@
     
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Editar</button>
+      <button type="submit" class="btn btn-default">Edit</button>
     </div>
   </div>
     

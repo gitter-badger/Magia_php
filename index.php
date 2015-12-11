@@ -86,6 +86,13 @@ switch ($p) {
         
         break;     
     
+// Detalles         
+    case "magiaDetalles":
+        include "modelos/magiaDetalles.php";
+        include "vista/magiaDetalles.php";
+        
+        break;     
+    
     
     
     

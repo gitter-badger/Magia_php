@@ -98,16 +98,16 @@ foreach ($resultado as $reg) {
 <h1><?php echo strtoupper($tabla); ?></h1>
 
 
-<form class="form-horizontal">
+<form class="form-horizontal" action="" method="">
 <?php
 foreach ($resultado as $reg) {
     include '../magia/reg/reg.php';
-    include '../magia/vista/input_add.php';
+    include '../magia/vista/input_detalles.php';
 }
 ?>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Rgistrar</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
         </div>
     </div>    
 </form>
@@ -119,16 +119,16 @@ foreach ($resultado as $reg) {
 <h2>Codigo:</h2>
 
 <textarea rows="20" class="form-control">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="" method="">
     <?php
     foreach ($resultado as $reg) {
         include '../magia/reg/reg.php';
-        include '../magia/vista/input_add.php';
+        include '../magia/vista/input_detalles.php';
     }
     ?>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">Rgistrar</button>
+      <button type="submit" class="btn btn-primary">Edit</button>
     </div>
   </div>    
 </form>

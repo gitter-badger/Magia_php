@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-9"></div>
-    <div class="col-lg-3">DataBase: <b><?php echo $dbname; ?></b> <br>[<a href="?p=configBd">Cambiar BD</a>]</div>
+    <div class="col-lg-3">DataBase: <b><?php echo $dbname; ?></b> <br>[<a href="?p=configBd">Change BD</a>]</div>
 </div>
 
 <ol class="breadcrumb">

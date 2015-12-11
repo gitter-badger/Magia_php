@@ -1,1 +1,1 @@
-<?php  $hostname = "localhost"; $dbname = "gestionInmoweb"; $username = "root"; $password = ""; ?>
+<?php  $hostname = "localhost"; $dbname = "syb_latinos"; $username = "root"; $password = ""; ?>
