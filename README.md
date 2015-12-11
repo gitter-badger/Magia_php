@@ -1,5 +1,7 @@
 # Magia PHP
-Sistema para ayudar en la creación de formularios 
+* Sistem to help you in the form creation
+* Sistema para ayudar en la creación de formularios 
+
 
 
 ## Configuración
@@ -9,4 +11,15 @@ $hostname = "localhost";
 $dbname = "gestionInmoweb"; 
 $username = "root"; 
 $password = ""; 
+
+## Configuración
+
+Fist edit the file bd.php:
+<?php  
+$hostname = "localhost"; 
+$dbname = "gestionInmoweb"; 
+$username = "root"; 
+$password = ""; 
+
+
 ?>
