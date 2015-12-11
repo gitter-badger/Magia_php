@@ -12,9 +12,9 @@ $dbname = "gestionInmoweb";
 $username = "root"; 
 $password = ""; 
 
-## Configuración
+## Configuration
 
-Fist edit the file bd.php:
+First edit the file bd.php:
 <?php  
 $hostname = "localhost"; 
 $dbname = "gestionInmoweb"; 
