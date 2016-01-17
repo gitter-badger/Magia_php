@@ -1,54 +1,6 @@
-<h1 class="page-header">
-    <span class="glyphicon glyphicon-user"></span> Tables 
+<h1 class="page-header">Base de datos: <?php echo "$bdatos"; ?> 
+    <a href="index.php"><span class="glyphicon glyphicon-refresh"></span></a>
 </h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -84,26 +36,26 @@ foreach($resultado as $reg ) {
         <td>$i</td>
         <td>$reg[0]</td>
         <td>
-        <a href=\"?p=magiaTabla&tabla=$reg[0]\">Table Translate</a><br>
-            <a href=\"?p=magiaTabla2&tabla=$reg[0]\">Tabla not translate</a>
+        <a href=\"home.php?p=magiaTabla&tabla=$reg[0]\">Table Translate</a><br>
+            <a href=\"home.php?p=magiaTabla2&tabla=$reg[0]\">Tabla not translate</a>
         </td>
-        <td><a href=\"?p=magiaDetalles&tabla=$reg[0]\">Details ---</a></td>
-        <td><a href=\"?p=magiaFormAdd&tabla=$reg[0]\">Form</a><br>
-            <a href=\"?p=magiaInserInto&tabla=$reg[0]\">Insert</a>
+        <td><a href=\"home.php?p=magiaDetalles&tabla=$reg[0]\">Details ---</a></td>
+        <td><a href=\"home.php?p=magiaFormAdd&tabla=$reg[0]\">Form</a><br>
+            <a href=\"home.php?p=magiaInserInto&tabla=$reg[0]\">Insert</a>
                 </td>    
-        <td><a href=\"?p=magiaFormEdit&tabla=$reg[0]\">Form</a><br>
-            <a href=\"?p=magiaUpdate&tabla=$reg[0]\">Update</a>
+        <td><a href=\"home.php?p=magiaFormEdit&tabla=$reg[0]\">Form</a><br>
+            <a href=\"home.php?p=magiaUpdate&tabla=$reg[0]\">Update</a>
                 </td>
             
-
-        <td><a href=\"?p=magiaInserInto&tabla=$reg[0]\">Request</a></td>
-        <td><a href=\"?p=magiaReg&tabla=$reg[0]\">reg[xxx]</a></td>
-        <td><a href=\"?p=magiaGET&tabla=$reg[0]\">Get</a><br>
-            <a href=\"?p=magiaPost&tabla=$reg[0]\">Post</a><br>
-            <a href=\"?p=magiaGET&tabla=$reg[0]\">Resuest</a>
+        <td>
+            <a href=\"home.php?p=magiaDeleteBoton&tabla=$reg[0]\">Boton</a><br>
+            <a href=\"home.php?p=magiaDelete&tabla=$reg[0]\">Delete</a>
         </td>
-
-
+        <td><a href=\"home.php?p=magiaReg&tabla=$reg[0]\">reg[xxx]</a></td>
+        <td><a href=\"home.php?p=magiaGET&tabla=$reg[0]\">Get</a><br>
+            <a href=\"home.php?p=magiaPost&tabla=$reg[0]\">Post</a><br>
+            <a href=\"home.php?p=magiaGET&tabla=$reg[0]\">Resuest</a>
+        </td>
         
         
     </tr>";
@@ -113,5 +65,3 @@ foreach($resultado as $reg ) {
 </tbody>
 </table>
 </div>
-
-

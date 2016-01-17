@@ -1,7 +1,7 @@
 
 
 <h1 class="page-header">
-</span> <a href="?p=magia">Tablas</a> : <?php echo "$tabla"; ?>
+</span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/vista/crear.php
 
 </h1>
 
@@ -119,7 +119,9 @@ foreach ($resultado as $reg) {
 <h2>Codigo:</h2>
 
 <textarea rows="20" class="form-control">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="?" method="post">
+        <input type="hidden" name="accion" value="crear">        
+    
     <?php
     foreach ($resultado as $reg) {
         include '../magia/reg/reg.php';

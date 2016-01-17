@@ -1,5 +1,5 @@
 <?php	
-$tabla = mysql_real_escape_string($_REQUEST['tabla']);
+//$tabla = mysql_real_escape_string($_REQUEST['tabla']);
 
 
 

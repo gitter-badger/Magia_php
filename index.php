@@ -8,19 +8,11 @@
     <body>
         <div class="container">
             
-     
-            
-            
-            
-            
-            
-            
+
             
             
             
 
-            
-            
         
             
 <?php 
@@ -30,18 +22,6 @@ include "conec.php";
 include "mande_coneccion.php";
 include "vista/header.php";
 
-     
-
-
-
-
-
-
-
-
-
-
-
 
 if(isset($_REQUEST['a']))
 {
@@ -50,17 +30,9 @@ if(isset($_REQUEST['a']))
     $a = "";
 }
 
-
-
-
 if($a=='configBd'){
     include "./request/updateDb.php"; 
 }
-
-
-
-
-
 
 
 if(isset($_REQUEST['p']))
@@ -73,116 +45,66 @@ else
 }
 
 
+?>
 
-
-
-
+            
+<?php            
 switch ($p) {
         
-    case "magia":
-        include "modelos/index.php";
-        include "vista/index.php";
-        break; 
-// con traduccion         
-    case "magiaTabla":
-        include "modelos/tabla.php";
-        include "vista/tabla.php";
-        //echo "magiaTabla"; 
-        break; 
-    
-// sin traduccion         
-    case "magiaTabla2":
-        include "modelos/tabla2.php";
-        include "vista/tabla2.php";
-        
-        break;     
-    
-// Detalles         
-    case "magiaDetalles":
-        include "modelos/magiaDetalles.php";
-        include "vista/magiaDetalles.php";
-        
-        break;     
-    
-    
-    
-    
-    case "magiaFormAdd":
-
-        include "modelos/tabla.php";
-        include "vista/magiaFormAdd.php";
-        //echo "magiaTabla"; 
-
-        break; 
-    case "magiaFormEdit":
-
-        include "modelos/tabla.php";
-        include "vista/magiaFormEdit.php";
-        //echo "magiaTabla"; 
-
-        break; 
-    case "magiaReg":
-
-        include "modelos/tabla.php";
-        include "vista/magiaReg.php";
-        //echo "magiaTabla"; 
-
-        break; 
-    case "magiaGET":
-
-        include "modelos/tabla.php";
-        include "vista/magiaGET.php";
-        //echo "magiaTabla"; 
-
-        break; 
-    case "magiaPost":
-
-        include "modelos/tabla.php";
-        include "vista/magiaPost.php";
-
-        break; 
-    case "magiaRequest":
-        
-        include "modelos/tabla.php";
-        include "vista/magiaRequest.php";
-        break; 
-    case "magiaInserInto":
-        include "modelos/tabla.php";
-        include "vista/magiaInserInto.php";
-        break; 
-    case "magiaUpdate":
-        include "modelos/tabla.php";
-        include "vista/magiaUpdate.php";
-        break; 
-    
-    case "magiaLista":
-        include "modelos/magiaLista.php";
-        include "vista/magiaLista.php";
-        break; 
-        
-    case "citas":
-        include "modelos/citas.php";
-        include "vista/citas.php";
-        break; 
-    
+// configBd         
     case "configBd":
         include "modelos/configBd.php";
-        include "vista/configBd.php";
+        include "vista/configBd.php";        
         break; 
-        
-        
     
     
     
-        default :
-        include "modelos/index.php";
-        include "vista/index.php";
+    default :
+       // include "modelos/index.php";
+       // include "vista/index.php";
         break;
 }
 ?>        
+           
             
             
-             </div>
+            
+            
+            <div class="row">
+                <div class="col-lg-3">
+                    
+                    
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                          Bienvenido
+                        </a>
+                        <a href="?p=crea" class="list-group-item">1. Crea tu base de datos</a>
+                        <a href="?p=configura" class="list-group-item">2. configura la coneccion</a>
+                        <a href="?p=plugin" class="list-group-item">3. Crea el pluging</a>
+                        <a href="?p=disfruta" class="list-group-item">Empezar a disfrutar</a>
+
+                      </div>
+                    
+                    
+                </div>  
+
+                <div class="col-lg-8">                    
+                    <?php 
+                    $p = $_GET['p'];
+                    
+                        include $p.'.php';
+                    ?>
+                </div>   
+            </div>  
+            
+            
+            
+            
+
+        
+
+            </div>            
+        
         
         
     </body>

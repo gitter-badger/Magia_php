@@ -1,1 +1,1 @@
-<?php  $hostname = "localhost"; $dbname = "syb_latinos"; $username = "root"; $password = ""; ?>
+<?php  $servidor = "localhost"; $bdatos = "subeybaja"; $usuario = "root"; $clave = ""; ?>

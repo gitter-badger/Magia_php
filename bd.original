@@ -1,6 +1,1 @@
-<?php 
-$hostname = "localhost";
-$dbname = "jef";
-$username = "root";
-$password = "";
-?>
+<?php  $servidor = "localhost"; $bdatos = "gestioninmoweb"; $usuario = "root"; $clave = ""; 
