@@ -4,7 +4,7 @@
 
 SQL
 <textarea class="form-control" rows="10">
-< ?php 
+&lt;?php 
 $sql=mysql_query(
         "SELECT * FROM <?php echo "$tabla";  ?> ORDER BY id_<?php echo "$tabla";  ?> DESC   ",$conexion) or die ("Error:".mysql_error());	
 ?></textarea>

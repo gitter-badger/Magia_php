@@ -7,7 +7,7 @@
 $pagina = "<?php echo $tabla ?>";
 include 'header.php';
 include "./plugins/<?php echo $tabla; ?>/funciones.php";
-if (permisos_tiene_permiso('editar', 'contables', $u_grupo)) {
+if (permisos_tiene_permiso('editar', '<?php echo $tabla; ?>', $u_grupo)) {
     $id_<?php echo $tabla ?> 		= mysql_real_escape_string($_REQUEST['id_<?php echo $tabla ?>']);     
     include "./plugins/<?php echo $tabla ?>/modelos/detalles.php";
     include "./plugins/<?php echo $tabla ?>/reg/reg.php";

@@ -1,26 +1,11 @@
 <?php 
 
-if(isset($_GET['nombre'])){
-    $nombrePlugin = trim (strtolower($_GET['nombre']));
-}else {
-   $nombrePlugin = false; 
-}
+function vceb($nombrePlugin,$mvcg){
 
 
-
-
-if($nombrePlugin){
-    $mvc =['controlador','modelos','reg','vista'];        
-    mkdir('./plugins/'.$nombrePlugin.'');
-    $i=0;
-    while ($i<4){
-        mkdir('./plugins/'.$nombrePlugin.'/'.$mvc[$i].'');
-        $i++;
-    }
     
     
-    
-    
+     
 //$fuente  = file_get_contents('./vista/c_index.php');
 $fuente  = '<?php
 include \'header.php\';
@@ -33,32 +18,139 @@ if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) {
     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario);
 }
 ';
-    
-    
+// para llenar el document de vacio
+$fuente = ""; 
+
+// estos se cran por defecto enla raiz del pluging
+
+       $c = ['funciones.php','readme.txt','COPYING','.gitignore','version','menu'] ;
+       $total = count($c);
+       $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$c[$i].''; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
 
 
 
 
-$c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;       
-                
 
 
-$i=0;
-while ($i<7) {
-    $destino = './plugins/'.$nombrePlugin.'/controlador/'.$c[$i].'.php'; 
-    $fp = fopen($destino, 'w');
-    fwrite($fp, $fuente);
-    //fwrite($fp, '23');
-    fclose($fp);
-    $i++;
+
+
+
+
+switch ($mvcg) {
+    case 'controlador':
+        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
+        $total = count($c);
+        $i=0;
+        while ($i<$total) {
+        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'modelos':
+    $c = ['index','ver','crear','editar','borrar','detalles'] ;        
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {
+        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'controlador':
+    $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;    
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {
+        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'reg':
+        $i=0;
+        while ($i<1) {
+        $c = ['reg'] ;
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'vista':
+    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr'] ;    
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $fuente);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+    default:
+        
+        break;
 }
 
 
+    
+    
+
+
+    
+}    
+    
+   
 
 
 
 
 
+if(isset($_GET['nombre'])){
+    $nombrePlugin = trim (strtolower($_GET['nombre']));
+}else {
+   $nombrePlugin = false; 
+}
+
+if($nombrePlugin){
+    $mvc =['controlador','modelos','reg','vista']; 
+    
+    mkdir('./plugins/'.$nombrePlugin.'');
+    $i=0;
+    while ($i<4){
+        mkdir('./plugins/'.$nombrePlugin.'/'.$mvc[$i].'');
+        
+        vceb($nombrePlugin, $mvc[$i]);
+        
+        $i++;
+    }
+    
+    
+    
 
 
 }
@@ -66,8 +158,19 @@ while ($i<7) {
 
 ?>
 
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
 
-<h1>Crear un pluging</h1>
+
+
+
+<h1>Plugins Instalados</h1>
+
+<a href="index.php?p=plugins_instalados">Instalados</a> | Buscar | <a href="index.php?p=plugin">Crear</a>
+<hr>
 
 
 <?php 
@@ -86,6 +189,7 @@ $nombre = "robinson";
 </form>
 
 
+<p>El nombre del plugin debe conicidir con el nombre de la tabla de la base de datos que desea administrar</p>
 
 
 
@@ -94,8 +198,8 @@ $nombre = "robinson";
 
 
 
-
-
+<?php 
+/*
 
 <table class="table table-striped">
     
@@ -248,6 +352,9 @@ $nombre = "robinson";
       
     </tbody>
 </table>
+
+*/
+?>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br>

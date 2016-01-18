@@ -1,5 +1,4 @@
 
-
 <h1 class="page-header">
 </span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/vista/index.php
 </h1>
@@ -7,10 +6,7 @@
 
 <textarea class="form-control" rows="20">
 <h4>
-    &lt;?php echo _t('Lista de <?php echo $tabla; ?>'); ?> 
-    [<a href="index.php?p=<?php echo $tabla; ?>&c=crear">
-        &lt;?php echo _t('Anadir nuevo'); ?>
-    </a>]
+    &lt;?php echo _t('Lista de <?php echo $tabla; ?>'); ?>     
 </h4>	
 
 <table class="table table-striped">
@@ -28,15 +24,25 @@
             <th>&lt;?php echo _t('Accion'); ?></th>
         </tr>
     </thead>
-
     <tbody>
         &lt;?php
         while ($reg = mysql_fetch_array($sql)) {
             include "./plugins/<?php echo $tabla; ?>/reg/reg.php";
-            include "./plugins/<?php echo $tabla; ?>/vista/tr.php";
+                if(permisos_tiene_permiso('editar', '<?php echo $tabla; ?>', $u_grupo)){
+                    include "./plugins/<?php echo $tabla; ?>/vista/tr_editar.php";
+                }else{
+                    include "./plugins/<?php echo $tabla; ?>/vista/tr.php";
+                }            
         }
         ?>
     </tbody>
+     &lt;?php
+   if(permisos_tiene_permiso('crear', '<?php echo $tabla; ?>', $u_grupo)){
+                include "./plugins/<?php echo $tabla; ?>/vista/tr_add.php";
+            }
+   ?>
+    
+    
 </table> 
 
 

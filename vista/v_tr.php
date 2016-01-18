@@ -10,9 +10,10 @@ foreach($resultado as $reg ) {
 ?>			                        		                        
 <td>
     <a href="index.php?p=<?php echo $tabla; ?>&c=detalles&id_<?php echo $tabla; ?>='.$id_<?php echo $tabla; ?>.'">Ver</a>    
-    <a href="index.php?p=<?php echo $tabla; ?>&c=editar&id_<?php echo $tabla; ?>='.$id_<?php echo $tabla; ?>.'">Editar</a>        
+    
 </td></tr>';
-?>
+
+
 </textarea>
 
 
