@@ -11,27 +11,10 @@ switch($_SERVER['SERVER_NAME']) {
         $dbname         = "subeybaja";
         break;
 //*******************************    
-	case 'subeybaja.be':
-	case 'www.subeybaja.be':
-	case 'http://www.subeybaja.be':
-	case 'www.subeybaja.be/facturas':
-	case 'http://www.subeybaja.be/facturas':
-        $hostname 	= "localhost";
-        $username 	= "subeybaj_factura";
-        $password 	= "XC;vXfCS1ueu"; 
-        $dbname         = "subeybaj_factura"; 
+
         break;	
 //*******************************    
-	case 'latinos.be':
-	case 'www.latinos.be':	
-	case 'http://www.latinos.be':	
-	case 'www.latinos.be/facturas':	
-        case 'http://www.latinos.be/facturas':	
-        $hostname 	= "localhost";
-        $username 	= "latinos_factweb";
-        $password 	= "lVg8MBb5G~h%"; 
-        $dbname         = "latinos_factweb";   
-        break;	
+
 //*********************************
     default:
 	die("INVALID HOST..");    
