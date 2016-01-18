@@ -1,0 +1,1 @@
+./pluging/demo/controlador/borrar.php  

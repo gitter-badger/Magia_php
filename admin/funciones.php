@@ -1,4 +1,275 @@
 <?php 
+
+
+
+function contenido_controlador($controlador,$nombrePlugin){
+    switch ($controlador) {
+        case 'index':
+            $resultados = ['id_usuario','nombres','apellidos','usuario','clave','grupo'];
+            $total_resultados = count($resultados);        
+            $fuente  = '<?php ' ."\n";
+            $fuente .= '$sql = "INSERT INTO '.$nombrePlugin.' (' ."\n";
+                        $i=0;
+                        while ($i < $total_resultados){
+                            $fuente .= $resultados[$i]; 
+                            $fuente .= ($i < $total_resultados-1)?",":"";
+                            $i++;
+                        }
+            $fuente .= ' ) VALUES (' ."\n";
+                        $i=0;
+                        while ($i < $total_resultados){
+                            $fuente .= ":$resultados[$i]"; 
+                            $fuente .= ($i < $total_resultados-1)?",\n":"\n";
+                            $i++;
+                        }
+            $fuente .= ' )"; '; 
+            $fuente .= ' $stmt = $dbh->prepare($sql);'."\n";
+            $fuente .= ' $stmt->execute(array('."\n";
+                        $i=0;
+                        while ($i < $total_resultados){    
+                            $fuente .= ' ":'.$resultados[$i].'"=>"$'.$resultados[$i].'"';        
+                            $fuente .= ($i < $total_resultados-1)?",\n":"\n";
+                            $i++;
+                        }
+            $fuente .= '      )'."\n";
+            $fuente .= ' );'."\n";
+            $fuente .= ' $mensaje = "Realizado con exito";'."\n";
+            $fuente .= ' ';
+            return $fuente;            
+            break;
+            
+        case 'ver':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php "; 
+            return $fuente;
+            break;
+        case 'crear':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php  "; 
+            return $fuente;
+            break;
+        case 'editar':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php  "; 
+            return $fuente;
+            break;
+        case 'borrar':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php  "; 
+            return $fuente;
+            break;
+        case 'buscar':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php ";
+            return $fuente;
+            break;
+        case 'detalles':
+            $fuente ="./pluging/$nombrePlugin/controlador/$controlador.php "; 
+            return $fuente;
+            break;
+
+        default:
+            $fuente = ""; 
+            return $fuente;
+            break;
+    }
+}
+
+function contenido_plugin($pagina,$nombre_plugin){
+    switch ($pagina) {
+        case 'funciones.php':
+            $fuente = ""; 
+            return $fuente;
+            break;
+        case 'readme.txt':
+            $fuente = "Plugin: $nombre_plugin "; 
+            return $fuente;
+            break;
+        
+        case 'COPYING':
+            $fuente = "Aca escriba el texto de la licencia del plugin: $nombre_plugin "; 
+            return $fuente;
+            break;
+        
+        
+        case '.gitignore':
+            $fuente = "poner las exepciones para el github "; 
+            return $fuente;
+            break;
+        
+        
+        case 'version':
+            $fuente = "Version: 0.01 "; 
+            return $fuente;
+            break;
+        
+        case 'menu':
+            $fuente = "<ul><li>Menu</li></ul>"; 
+            return $fuente;
+            break;
+        
+        default :
+            return;
+            break;
+    }
+}
+
+
+
+
+
+
+
+function vceb($nombrePlugin,$mvcg){
+   
+    
+
+
+
+// estos se cran por defecto enla raiz del pluging
+
+       $c = ['funciones.php','readme.txt','COPYING','.gitignore','version','menu'] ;
+       $total = count($c);
+       $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$c[$i].''; 
+        // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_plugin($c[$i],$nombrePlugin );
+        
+        
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+
+switch ($mvcg) {
+    case 'controlador':
+        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
+        $total = count($c);
+        
+        $i=0;
+        while ($i<$total) {        
+        $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin );
+        
+        
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'modelos':
+    $c = ['index','ver','crear','editar','borrar','detalles','buscar'] ;        
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {
+        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin );
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'controlador':
+    $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;    
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {
+        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin );
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'reg':
+        $i=0;
+        while ($i<1) {
+        $c = ['reg'] ;
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin );
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+case 'vista':
+    //estas son las paginas  a crear
+    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr','tr_anadir','tr_editar'] ;    
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin );
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;
+        
+    default:
+        
+        break;
+}
+
+
+    
+    
+
+
+    
+}    
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*############################
 Facturas PHP 0.001
 Creado por robinson coello 

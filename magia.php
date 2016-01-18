@@ -107,6 +107,11 @@ switch ($p) {
         include "modelos/v_detalles.php";
         include "vista/c_detalles.php";        
         break; 
+// c_ver         
+    case "c_ver":
+        include "modelos/v_detalles.php";
+        include "vista/c_ver.php";        
+        break; 
         
 // c_editar         
     case "c_editar":
@@ -116,7 +121,7 @@ switch ($p) {
         
 // c_index         
     case "c_index":
-        include "modelos/c_index.php";
+        include "modelos/v_detalles.php";
         include "vista/c_index.php";        
         break; 
     

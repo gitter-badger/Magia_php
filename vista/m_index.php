@@ -6,7 +6,7 @@ SQL
 <textarea class="form-control" rows="10">
 &lt;?php 
 $sql=mysql_query(
-        "SELECT * FROM <?php echo "$tabla";  ?> ORDER BY id_<?php echo "$tabla";  ?> DESC   ",$conexion) or die ("Error:".mysql_error());	
+        "SELECT * FROM <?php echo "$tabla";  ?> ORDER BY id_<?php echo "$tabla";  ?> DESC   ",$conexion) or die ("Error: en el fichero:" .__FILE__ .' linea: '. __LINE__ .' / '.mysql_error());	
 ?></textarea>
 
 PDO

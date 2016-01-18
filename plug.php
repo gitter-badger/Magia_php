@@ -21,6 +21,7 @@ include "bd.php";
 include "conec.php";
 include "mande_coneccion.php";
 include "vista/header.php";
+include "admin/funciones.php";
 
 
 if(isset($_REQUEST['a']))

@@ -1,134 +1,15 @@
 <?php 
 
-function vceb($nombrePlugin,$mvcg){
-
-
-    
-    
-     
-//$fuente  = file_get_contents('./vista/c_index.php');
-$fuente  = '<?php
-include \'header.php\';
-include "./plugins/'.$nombrePlugin.'/funciones.php";
-$pagina = "'.$nombrePlugin.'";
-if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) {
-    include "./plugins/'.$nombrePlugin.'/modelos/index.php";
-    include "./plugins/'.$nombrePlugin.'/vista/index.php";
-} else {
-    permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario);
-}
-';
-// para llenar el document de vacio
-$fuente = ""; 
-
-// estos se cran por defecto enla raiz del pluging
-
-       $c = ['funciones.php','readme.txt','COPYING','.gitignore','version','menu'] ;
-       $total = count($c);
-       $i=0;
-        while ($i<$total) {        
-         $destino = './plugins/'.$nombrePlugin.'/'.$c[$i].''; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
 
 
 
+// verificar que solo tenga letras de a-z en minusculas
+// talvez guion bajo, medio, 
+// de todas maneras el nombre debe ser identico a la tabla de la BD
 
-
-
-
-
-
-
-switch ($mvcg) {
-    case 'controlador':
-        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
-        $total = count($c);
-        $i=0;
-        while ($i<$total) {
-        
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-case 'modelos':
-    $c = ['index','ver','crear','editar','borrar','detalles','buscar'] ;        
-    $total = count($c);
-    $i=0;
-        while ($i<$total) {
-        
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-case 'controlador':
-    $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;    
-    $total = count($c);
-    $i=0;
-        while ($i<$total) {
-        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-case 'reg':
-        $i=0;
-        while ($i<1) {
-        $c = ['reg'] ;
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-case 'vista':
-    //estas son las paginas  a crear
-    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr','tr_anadir','tr_editar'] ;    
-    $total = count($c);
-    $i=0;
-        while ($i<$total) {        
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $fuente);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-    default:
-        
-        break;
-}
-
-
-    
-    
-
-
-    
-}    
-    
-   
-
-
-
+// caso de no encontrar una conrrespondencia con una de las tablas de la BD
+// igual creamos pero tendremos en cuanta para ya no llenar los controladores por defecto 
+// talvez crear en un futuro paginas por deecto 
 
 
 if(isset($_GET['nombre'])){
@@ -144,7 +25,7 @@ if($nombrePlugin){
     $i=0;
     while ($i<4){
         mkdir('./plugins/'.$nombrePlugin.'/'.$mvc[$i].'');
-        
+        // llamamos la funcion que nos crea la extructura de la MVC
         vceb($nombrePlugin, $mvc[$i]);
         
         $i++;

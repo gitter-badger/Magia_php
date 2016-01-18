@@ -10,6 +10,7 @@
             <li><a href="magia.php?p=c_editar&tabla=<?php echo "$tabla"; ?>">editar.php</a></li>                                        
             <li><a href="magia.php?p=c_borrar&tabla=<?php echo "$tabla"; ?>">borrar.php</a></li>                                        
             <li><a href="magia.php?p=c_buscar&tabla=<?php echo "$tabla"; ?>">buscar.php</a></li>                                        
+            <li><a href="magia.php?p=c_detalles&tabla=<?php echo "$tabla"; ?>">detalles.php</a></li>                                        
                                                 
         </ul>
         <li><b>M</b>odelos</li>
