@@ -10,16 +10,13 @@
             <li><a href="magia.php?p=c_editar&tabla=<?php echo "$tabla"; ?>">editar.php</a></li>                                        
             <li><a href="magia.php?p=c_borrar&tabla=<?php echo "$tabla"; ?>">borrar.php</a></li>                                        
             <li><a href="magia.php?p=c_buscar&tabla=<?php echo "$tabla"; ?>">buscar.php</a></li>                                        
-            <li><a href="magia.php?p=c_detalles&tabla=<?php echo "$tabla"; ?>">detalles.php</a></li>                                        
+                                                   
                                                 
         </ul>
         <li><b>M</b>odelos</li>
         <ul>
             <li><a href="magia.php?p=m_index&tabla=<?php echo "$tabla"; ?>">index.php</a></li>
             <li><a href="magia.php?p=m_ver&tabla=<?php echo "$tabla"; ?>">ver.php</a></li>
-            <li><a href="magia.php?p=m_crear&tabla=<?php echo "$tabla"; ?>">crear.php</a></li>
-            <li><a href="magia.php?p=m_editar&tabla=<?php echo "$tabla"; ?>">editar.php</a></li>
-            <li><a href="magia.php?p=m_borrar&tabla=<?php echo "$tabla"; ?>">borrar.php</a></li>
             <li><a href="magia.php?p=m_buscar&tabla=<?php echo "$tabla"; ?>">buscar.php</a></li>
         </ul>                                
         <li><b>V</b>ista</li>

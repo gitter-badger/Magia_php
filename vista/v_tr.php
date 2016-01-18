@@ -9,7 +9,7 @@ foreach($resultado as $reg ) {
 }
 ?>			                        		                        
 <td>
-    <a href="index.php?p=<?php echo $tabla; ?>&c=detalles&id_<?php echo $tabla; ?>='.$id_<?php echo $tabla; ?>.'">Ver</a>    
+    <a href="index.php?p=<?php echo $tabla; ?>&c=detalles&id='.$id.'">Ver</a>    
     
 </td></tr>';
 

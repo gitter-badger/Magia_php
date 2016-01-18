@@ -10,11 +10,6 @@ switch($_SERVER['SERVER_NAME']) {
         $password 	= ""; 
         $dbname         = "subeybaja";
         break;
-//*******************************    
-
-        break;	
-//*******************************    
-
 //*********************************
     default:
 	die("INVALID HOST..");    

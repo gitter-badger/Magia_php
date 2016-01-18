@@ -1,7 +1,7 @@
 <textarea class="form-control" rows="30">
 
 &lt;?php
-$borrar = (permisos_tiene_permiso('borrar', '<?php echo $tabla; ?>', $u_grupo))?'<a class="btn btn-danger" href="index.php?p=<?php echo $tabla; ?>&c=index&a=borrar&id_<?php echo $tabla; ?>='.$id_<?php echo $tabla; ?>.'">Borrar</a>':'';
+$borrar = (permisos_tiene_permiso('borrar', '<?php echo $tabla; ?>', $u_grupo))?'<a class="btn btn-danger" href="index.php?p=<?php echo $tabla; ?>&c=index&a=borrar&id='.$id.'">Borrar</a>':'';
 ?>
 
 <form method="post" action="index.php" >
@@ -10,7 +10,7 @@ $borrar = (permisos_tiene_permiso('borrar', '<?php echo $tabla; ?>', $u_grupo))?
     <input type="hidden" name="a" value="editar">
     
     
-    <input type="hidden" name="id_<?php echo $tabla; ?>" value="&lt;?php echo $id_<?php echo $tabla; ?>; ?>">    
+    <input type="hidden" name="id" value="&lt;?php echo $id; ?>">    
     <tr>
         
         <?php 

@@ -51,7 +51,7 @@ if($nombrePlugin){
 
 <h1>Plugins Instalados</h1>
 
-<a href="index.php?p=plugins_instalados">Instalados</a> | Buscar | <a href="index.php?p=plugin">Crear</a>
+<a href="index.php?p=plugins">Instalados</a> | Buscar | <a href="index.php?p=plugin">Crear</a>
 <hr>
 
 

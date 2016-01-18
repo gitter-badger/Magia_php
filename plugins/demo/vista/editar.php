@@ -1,1 +1,0 @@
-./pluging/demo/controlador/editar.php  
