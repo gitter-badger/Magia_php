@@ -41,9 +41,9 @@ if($a=='configBd'){include "./request/updateDb.php"; }
 ?>
             
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-0">
                 </div>  
-                <div class="col-lg-9">                    
+                <div class="col-lg-12">                    
                     <?php 
                         include './plugins/'.$p.'/controlador/'.$c.'.php';
                     ?>

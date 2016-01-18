@@ -38,7 +38,7 @@
     </tbody>
      &lt;?php
    if(permisos_tiene_permiso('crear', '<?php echo $tabla; ?>', $u_grupo)){
-                include "./plugins/<?php echo $tabla; ?>/vista/tr_add.php";
+                include "./plugins/<?php echo $tabla; ?>/vista/tr_anadir.php";
             }
    ?>
     

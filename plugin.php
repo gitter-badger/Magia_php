@@ -59,7 +59,7 @@ switch ($mvcg) {
         break;
         
 case 'modelos':
-    $c = ['index','ver','crear','editar','borrar','detalles'] ;        
+    $c = ['index','ver','crear','editar','borrar','detalles','buscar'] ;        
     $total = count($c);
     $i=0;
         while ($i<$total) {
@@ -99,7 +99,8 @@ case 'reg':
         break;
         
 case 'vista':
-    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr'] ;    
+    //estas son las paginas  a crear
+    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr','tr_anadir','tr_editar'] ;    
     $total = count($c);
     $i=0;
         while ($i<$total) {        
@@ -185,7 +186,7 @@ $nombre = "robinson";
     <label class="sr-only" for="exampleInputEmail3">Nombre del plugin</label>
     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
   </div>
-  <button type="submit" class="btn btn-primary">Buscar tabla</button>
+  <button type="submit" class="btn btn-primary">Crear plugin</button>
 </form>
 
 

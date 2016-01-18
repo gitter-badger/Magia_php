@@ -6,7 +6,7 @@
     <input type="hidden" name="c" value="index">    
     <input type="hidden" name="a" value="crear">    
     <tr>
-        <td></td>
+        
 
         <?php 
         foreach($resultado as $reg ) {

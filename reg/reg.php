@@ -9,5 +9,4 @@ $mayusculas_tod_la_fra          = mb_strtoupper($todo_minusculas); // toda la fr
 $name                           = $reg[0];
 $tipo_campo                     = $reg[1];
              
-             
-?>
+ 

@@ -5,7 +5,7 @@
 
 SQL
 <textarea class="form-control" rows="10">
-< ?php 
+&lt;?php 
 $sql=mysql_query(
         "SELECT * 
 FROM <?php echo "$tabla";  ?> 

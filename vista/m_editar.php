@@ -4,16 +4,19 @@
 
 
 <textarea class="form-control" rows="50">
-< ?php 
+&lt;?php 
 $sql=mysql_query(" UPDATE <?php echo "$tabla"; ?> SET 
 <?php 
-foreach($resultado as $reg ) {
-echo "$reg[0] = '$$reg[0]',
-"; 
+$t = count($resultado);
+$i=0;
+foreach($resultado as $reg=>$item ) {
+    //echo var_dump($item);
+    echo "$item[Field] = '$$item[Field]'"; 
+    echo $c = ($i < $t-1)?",":"";
+    $i++;
 }
 ?>
 
-xxxxxxxxxxxxxx 		= '$xxxxxxxxxxxxxxx'     
 
 WHERE id_<?php echo "$tabla"; ?> = '$id_<?php echo "$tabla"; ?> ",$conexion) or die ("Error: ".mysql_error());  
 

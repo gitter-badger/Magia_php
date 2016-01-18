@@ -33,7 +33,7 @@
             <li><a href="magia.php?p=v_detalles1&tabla=<?php echo "$tabla"; ?>">detalles1.php </a></li>
             <li><a href="magia.php?p=v_borrar&tabla=<?php echo "$tabla"; ?>">Boton borrar </a></li>
             <li><a href="magia.php?p=v_tr&tabla=<?php echo "$tabla"; ?>">tr </a></li>
-            <li><a href="magia.php?p=v_tr_add&tabla=<?php echo "$tabla"; ?>">tr_add </a></li>
+            <li><a href="magia.php?p=v_tr_anadir&tabla=<?php echo "$tabla"; ?>">tr_anadir </a></li>
             <li><a href="magia.php?p=v_tr_editar&tabla=<?php echo "$tabla"; ?>">tr_editar </a></li>
 
         </ul>                                

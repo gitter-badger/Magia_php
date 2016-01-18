@@ -236,10 +236,10 @@ switch ($p) {
         include "vista/v_tr.php";        
         break;   
     
-// v_tr_add         
-    case "v_tr_add":
+// v_tr_anadir         
+    case "v_tr_anadir":
         include "modelos/v_detalles.php";
-        include "vista/v_tr_add.php";        
+        include "vista/v_tr_anadir.php";        
         break;   
     
 // v_tr_editar         
