@@ -8,7 +8,8 @@ $pagina = "<?php echo $tabla;  ?>";
 include 'header.php';
 include "./plugins/<?php echo $tabla;  ?>/funciones.php";
 if (permisos_tiene_permiso('ver', '<?php echo $tabla;  ?>', $u_grupo)) {
-    include "./plugins/<?php echo $tabla;  ?>/modelos/index.php";
+    $busqueda 		= mysql_real_escape_string($_REQUEST['busqueda']);
+    include "./plugins/<?php echo $tabla;  ?>/modelos/buscar.php";
     include "./plugins/<?php echo $tabla;  ?>/vista/index.php";
 } else {
     permisos_sin_permiso('ver', '<?php echo $tabla;  ?>', $u_id_usuario);

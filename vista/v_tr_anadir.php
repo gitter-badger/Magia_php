@@ -3,7 +3,7 @@
 
 <form method="post" action="index.php" >
     <input type="hidden" name="p" value="<?php echo $tabla; ?>">
-    <input type="hidden" name="c" value="index">    
+    <input type="hidden" name="c" value="crear">    
     <input type="hidden" name="a" value="crear">    
     <tr>
         

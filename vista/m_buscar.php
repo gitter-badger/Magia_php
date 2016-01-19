@@ -9,23 +9,26 @@ SQL
 $sql=mysql_query(
         "SELECT * 
 FROM <?php echo "$tabla";  ?> 
-WHERE id_<?php echo "$tabla";  ?> = '$id_<?php echo "$tabla";  ?>' 
-ORDER BY id_<?php echo "$tabla";  ?> DESC   
+WHERE 
+<?php 
+$t = count($resultado);
+$i=0;
+foreach($resultado as $reg=>$item ) {
+    //echo var_dump($item);
+    echo "$item[Field] like ".'\'%$busqueda%\''; 
+    echo $c = ($i < $t-1)?" OR ":"";
+    $i++;
+}
+?>
+
+ORDER BY id DESC   
 ",$conexion) or die ("Error:".mysql_error());	
 ?></textarea>
 
 
 PDO
 <textarea class="form-control" rows="10">
-&lt;?php
-            $sql        = "SELECT FROM <?php echo "$tabla";  ?> WHERE id_<?php echo "$tabla";  ?> = :id_<?php echo "$tabla";  ?>";
-            $stmt       = $dbh->prepare($sql);
-            $stmt->execute(array(           
-                ":id_<?php echo "$tabla";  ?>"=>"$id_<?php echo "$tabla";  ?>"
-                )
-            );        
-            $resultado = $stmt->fetchAll();
-?&gt;  
+
 
 
 

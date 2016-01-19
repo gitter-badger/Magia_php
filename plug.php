@@ -9,10 +9,6 @@
         <div class="container">
             
 
-            
-            
-            
-
         
             
 <?php 
@@ -68,28 +64,30 @@ switch ($p) {
 ?>        
            
             
+          
+            
+    
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-0">
                     
-                    
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                          Bienvenido
-                        </a>
-                        <a href="?p=crea" class="list-group-item">1. Crea tu base de datos</a>
-                        <a href="?p=configura" class="list-group-item">2. configura la coneccion</a>
-                        <a href="?p=plugin" class="list-group-item">3. Crea el pluging</a>
-                        <a href="?p=disfruta" class="list-group-item">Empezar a disfrutar</a>
 
-                      </div>
+                    
                     
                     
                 </div>  
 
-                <div class="col-lg-9">                    
+                <div class="col-lg-12">                    
                     <?php 
                     $p = $_GET['p'];
                     

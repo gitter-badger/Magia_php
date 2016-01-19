@@ -8,11 +8,25 @@ $pagina = "<?php echo $tabla;  ?>";
 include 'header.php';
 include "./plugins/<?php echo $tabla;  ?>/funciones.php";
 if (permisos_tiene_permiso('crear', '<?php echo $tabla;  ?>', $u_grupo)) {
-    include "./plugins/<?php echo $tabla;  ?>/modelos/index.php";
-    include "./plugins/<?php echo $tabla;  ?>/vista/index.php";
+    if(isset($_REQUEST['a'])=='crear'){
+
+<?php 
+foreach($resultado as $reg ) {
+include '../magia/reg/reg.php';
+echo '$'.$reg[0].' = mysql_real_escape_string($_REQUEST[\''.$reg[0].'\']);';
+echo "\n";   
+}
+?>
+        
+        include "./plugins/<?php echo $tabla;  ?>/modelos/crear.php"; 
+        include "./plugins/<?php echo $tabla;  ?>/vista/crear.php"; 
+    }else{
+        include "./plugins/<?php echo $tabla;  ?>/vista/crear.php"; 
+    } 
+      
 } else {
     permisos_sin_permiso('crear', '<?php echo $tabla;  ?>', $u_id_usuario);
 }
-?>
+
 
 </textarea>

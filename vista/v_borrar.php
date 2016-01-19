@@ -1,30 +1,16 @@
-
-
-
 <h1 class="page-header">
 </span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/vista/ [boton borrar]
 </h1>
-
-
-
-
-
-
-
-
-
-<a class="btn btn-danger" href="demo.php?p=<?php echo "$tabla";  ?>&a=borrar&id_<?php echo "$tabla";  ?>=123456789">Borrar</a>
-
-
+<a class="btn btn-danger" href="index.php?p=grupos&c=borrar&id=<?php echo $id; ?>">Borrar</a>
 <hr>
 
 
 
 Codigo
 <textarea class="form-control" rows="5">
-
-<a class="btn btn-danger" href="demo.php?p=<?php echo "$tabla";  ?>&a=borrar&id_<?php echo "$tabla";  ?>=$id_<?php echo "$tabla";  ?>">Borrar</a>
-
+<h2>Atencion</h2>
+<p>Ud esta a por borrar definiticamente este registro, desea hacerlo?</p>
+<a class="btn btn-danger" href="index.php?p=<?php echo "$tabla";  ?>&c=borrar&id=&lt?php echo $id; ?>">Si,borrar</a>
 </textarea>
 
 

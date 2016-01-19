@@ -6,9 +6,9 @@ SQL
 <textarea class="form-control" rows="10">
 &lt;?php 
 $sql=mysql_query(
-        "SELECT * FROM"
-        . "<?php echo "$tabla";  ?> WHERE id_<?php echo "$tabla"; ?> = '$id_<?php echo "$tabla";  ?>' " 
-        . "ORDER BY id_<?php echo "$tabla";  ?> DESC   ",$conexion) or die ("Error:".mysql_error());
+        "SELECT * FROM "
+        . "<?php echo "$tabla";  ?> WHERE id = '$id' " 
+        . "ORDER BY id DESC   ",$conexion) or die ("Error:".mysql_error());
 $reg = mysql_fetch_array($sql);
 	
 ?>
@@ -21,13 +21,13 @@ $reg = mysql_fetch_array($sql);
 PDO
 <textarea class="form-control" rows="10">
 &lt;?php
-            $sql        = "SELECT FROM <?php echo "$tabla";  ?> WHERE id_<?php echo "$tabla";  ?> = :id_<?php echo "$tabla";  ?>";
+            $sql        = "SELECT FROM <?php echo "$tabla";  ?> WHERE id = :id";
             $stmt       = $dbh->prepare($sql);
             $stmt->execute(array(           
-                ":id_<?php echo "$tabla";  ?>"=>"$id_<?php echo "$tabla";  ?>"
+                ":id"=>"$id"
                 )
             );        
-            $resultado = $stmt->fetchAll();
+            $reg = $stmt->fetchAll();
 ?&gt;  
 
 

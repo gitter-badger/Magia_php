@@ -1,73 +1,26 @@
-<?php 
+<?php   
+
+
+
+
 
 
 
 function contenido_controlador($controlador,$nombrePlugin){
-    switch ($controlador) {
+    global  $dbh; 
+    //$resultados = resultados($nombrePlugin);
+    include "./modelos/v_crea_plug.php";
+    $total_resultados = count($resultados);
 
-            
-        case 'index':
-            $fuente  =  ' <?php '."\n";
-            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
-            $fuente .= ' include \'header.php\';  '."\n";
-            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/controlador/index.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/index.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/index.php"; '."\n";
-            $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
-            $fuente .= ' } '."\n";
-            return $fuente;
-        case 'ver':
-            $fuente  =  ' <?php '."\n";
-            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
-            $fuente .= ' include \'header.php\';  '."\n";
-            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/index.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/index.php"; '."\n";
-            $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
-            $fuente .= ' } '."\n";
-            return $fuente;
-            break;
-        case 'crear':
-            $fuente  =  ' <?php '."\n";
-            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
-            $fuente .= ' include \'header.php\';  '."\n";
-            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'crear\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";            
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/crear.php"; '."\n";
-            $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'crear\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
-            $fuente .= ' } '."\n";                        
-            return $fuente;
-            break;
-        case 'editar':
-            $fuente =  ' <?php '."\n";
-            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
-            $fuente .= ' include \'header.php\';  '."\n";
-            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'editar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/detalles.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/editar.php"; '."\n";
-            $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'editar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
-            $fuente .= ' } '."\n";
-            
-            return $fuente;
-            break;
+    switch ($controlador) {        
         case 'borrar':
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
             $fuente .= ' include \'header.php\';  '."\n";
             $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/detalles.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/borrar.php"; '."\n";
+            $fuente .= ' if (permisos_tiene_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";            
+            $fuente .= ' $id 		= mysql_real_escape_string($_REQUEST[\'id\']); '."\n";
+            $fuente .= ' include "./plugins/grupos/modelos/borrar.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";
@@ -79,29 +32,98 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
             $fuente .= ' include \'header.php\';  '."\n";
             $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
-            $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/index.php"; '."\n";
+            $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";                        
+            $fuente .= '     $busqueda 		= mysql_real_escape_string($_REQUEST[\'busqueda\']); '."\n";
+            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/busqueda.php"; '."\n";            
             $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/buscar.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";            
             return $fuente;
             break;
-        case 'detalles':
-            $fuente =  ' <?php '."\n";
+        case 'crear':
+            $fuente  =  ' <?php '."\n";
+            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
+            $fuente .= ' include \'header.php\';  '."\n";
+            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
+            $fuente .= ' if (permisos_tiene_permiso(\'crear\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";                                                
+            $fuente .= ' if(isset($_REQUEST[\'a\'])==\'crear\'){ '."\n";        
+                        $i=0;
+                        while ($i < $total_resultados){
+                            $fuente .= ' $'.$resultados[$i].' = mysql_real_escape_string($_REQUEST[\''.$resultados[$i].'\']);     '."\n"; 
+                            $fuente .= ($i < $total_resultados-1)?" ":"";
+                            $i++;
+                        }        
+            $fuente .= ' include "./plugins/grupos/modelos/crear.php";  '."\n";
+            $fuente .= ' include "./plugins/grupos/vista/crear.php";  '."\n";
+            $fuente .= ' }else{ '."\n";
+            $fuente .= ' include "./plugins/grupos/vista/crear.php";  '."\n";
+            $fuente .= ' }          '."\n";   
+            $fuente .= ' } else { '."\n";
+            $fuente .= '     permisos_sin_permiso(\'crear\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= ' } '."\n";                        
+            return $fuente;
+            break;
+        case 'editar':
+        $fuente = ' <?php '."\n";
+        $fuente .= ' $pagina = "'.$nombrePlugin.'"; '."\n";
+        $fuente .= ' include \'header.php\'; '."\n";
+        $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
+        $fuente .= ' if (permisos_tiene_permiso(\'editar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
+            $fuente .= ' if(isset($_REQUEST[\'a\'])==\'editar\'){ '."\n";
+            
+                        $i=0;
+                        while ($i < $total_resultados){
+                            $fuente .= ' $'.$resultados[$i].' = mysql_real_escape_string($_REQUEST[\''.$resultados[$i].'\']);     '."\n"; 
+                            $fuente .= ($i < $total_resultados-1)?" ":"";
+                            $i++;
+                        }                
+                
+                $fuente .= ' include "./plugins/'.$nombrePlugin.'/modelos/editar.php";  '."\n";
+                $fuente .= ' include "./plugins/'.$nombrePlugin.'/vista/editar.php";  '."\n";
+            $fuente .= ' }else{ '."\n";
+                     $fuente .= ' $id = mysql_real_escape_string($_REQUEST[\'id\']);      '."\n";
+                    $fuente .= ' include "./plugins/'.$nombrePlugin.'/modelos/ver.php"; '."\n";
+                    $fuente .= ' include "./plugins/'.$nombrePlugin.'/reg/reg.php"; '."\n";
+                    $fuente .= ' include "./plugins/'.$nombrePlugin.'/vista/editar.php"; '."\n";
+            $fuente .= ' }  '."\n";
+       
+            $fuente .= ' } else { '."\n";
+                $fuente .= ' permisos_sin_permiso(\'editar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= ' } '."\n";
+
+            return $fuente;
+            
+            break;             
+        case 'index':
+            $fuente  =  ' <?php '."\n";
+            $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
+            $fuente .= ' include \'header.php\';  '."\n";
+            $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
+            $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";            
+            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/index.php"; '."\n";
+            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/index.php"; '."\n";
+            $fuente .= ' } else { '."\n";
+            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= ' } '."\n";
+            return $fuente;
+        case 'ver':
+            $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
             $fuente .= ' include \'header.php\';  '."\n";
             $fuente .= ' include "./plugins/'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/modelos/detalles.php"; '."\n";
+            
+            $fuente .= '     $id 		= mysql_real_escape_string($_REQUEST[\'id\']);   '."\n";
+            
+            $fuente .= '     include "./plugins/'.$nombrePlugin.'/controlador/ver.php"; '."\n";            
             $fuente .= '     include "./plugins/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/detalles.php"; '."\n";
+            $fuente .= '     include "./plugins/'.$nombrePlugin.'/vista/ver.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
-            $fuente .= ' } '."\n";            
+            $fuente .= ' } '."\n";
             return $fuente;
             break;
-
         default:
             $fuente = ""; 
             return $fuente;
@@ -110,46 +132,111 @@ function contenido_controlador($controlador,$nombrePlugin){
 }
 
 function contenido_modelos($controlador,$nombrePlugin){
-    switch ($modelos) {                    
-        case 'index':
-            $resultados = ['id_usuario','nombres','apellidos','usuario','clave','grupo'];
-            $total_resultados = count($resultados);        
-            $fuente  = '<?php ' ."\n";
-            $fuente .= '$sql = "INSERT INTO '.$nombrePlugin.' (' ."\n";
-                        $i=0;
-                        while ($i < $total_resultados){
-                            $fuente .= $resultados[$i]; 
-                            $fuente .= ($i < $total_resultados-1)?",":"";
-                            $i++;
-                        }
-            $fuente .= ' ) VALUES (' ."\n";
-                        $i=0;
-                        while ($i < $total_resultados){
-                            $fuente .= ":$resultados[$i]"; 
-                            $fuente .= ($i < $total_resultados-1)?",\n":"\n";
-                            $i++;
-                        }
-            $fuente .= ' )"; '; 
-            $fuente .= ' $stmt = $dbh->prepare($sql);'."\n";
-            $fuente .= ' $stmt->execute(array('."\n";
-                        $i=0;
-                        while ($i < $total_resultados){    
-                            $fuente .= ' ":'.$resultados[$i].'"=>"$'.$resultados[$i].'"';        
-                            $fuente .= ($i < $total_resultados-1)?",\n":"\n";
-                            $i++;
-                        }
-            $fuente .= '      )'."\n";
-            $fuente .= ' );'."\n";
-            $fuente .= ' $mensaje = "Realizado con exito";'."\n";
-            $fuente .= ' ';
-            return $fuente;            
-            break;            
-        case 'ver':
-            $fuente  =  ' <?php '."\n";
-            $fuente .= ' $sql=mysql_query( '."\n";
-            $fuente .= ' "SELECT * FROM '.$nombrePlugin.' ORDER BY id DESC   ",$conexion) or die ("Error: en el fichero:" .__FILE__ .\' linea: \'. __LINE__ .\' / \'.mysql_error());	'."\n";
+    global  $dbh; 
+//$resultados = resultados($nombrePlugin);
+    include "modelos/v_crea_plug.php";
+$total_resultados = count($resultados);
+
+
+    switch ($controlador) {              
+        case 'borrar':
+            $fuente =  ' <?php '."\n";
+            $fuente .=  ' $sql=mysql_query(" '."\n";
+            $fuente .=  ' DELETE FROM  '."\n";
+            $fuente .=  ' '.$nombrePlugin.'  '."\n";
+            $fuente .=  ' WHERE id = \'$id\' ' ."\n";
+            $fuente .=  ' ",$conexion) or die ("Error ".mysql_error()); '."\n";
+            $fuente .=  '  '."\n";
+            $fuente .=  ' $mensaje = "Realizado"; '."\n";                        
             return $fuente;
             break;
+        case 'buscar':
+            $fuente  =  ' <?php '."\n";
+            $fuente .=  ' $sql=mysql_query( '."\n";
+            $fuente .=  '         "SELECT *  '."\n";
+            $fuente .=  ' FROM '.$nombrePlugin.'  '."\n";
+            $fuente .=  ' WHERE  '."\n";                                    
+            $i=0;
+                while ($i < $total_resultados){        
+                    $fuente .= ' '.$resultados[$i].' like '%$busqueda%'    '; 
+                    $fuente .= ($i < $total_resultados-1)?" OR ":"";
+                $i++;
+            } 
+            $fuente .=  ' ORDER BY id DESC    '."\n";
+            $fuente .=  ' ",$conexion) or die ("Error:".mysql_error());  '."\n";          
+            return $fuente;
+            break;        
+        case 'crear':
+            $fuente =  ' <?php '."\n";
+            $fuente =  ' $sql = "INSERT INTO '.$nombrePlugin.' ( '."\n";                                    
+            $i=0;
+                while ($i < $total_resultados){        
+                    $fuente .= ' '.$resultados[$i].' '; 
+                    $fuente .= ($i < $total_resultados-1)?" , ":"";
+                $i++;
+            }
+            $fuente =  ' ) VALUES ( '."\n";
+            $i=0;
+                while ($i < $total_resultados){        
+                    $fuente .= ' :'.$resultados[$i].' '; 
+                    $fuente .= ($i < $total_resultados-1)?" , ":"";
+                $i++;
+            }
+            $fuente =  ' $stmt = $dbh->prepare($sql); '."\n";
+            $fuente =  ' $stmt->execute(array( '."\n";            
+            $i=0;
+                while ($i < $total_resultados){        
+                    $fuente .= ' ":'.$resultados[$i].'"=>"$'.$resultados[$i].'" '."\n";
+                    $fuente .= ($i < $total_resultados-1)?" , ":"";
+                $i++;
+            }
+            $fuente =  '             ) '."\n";
+            $fuente =  ' ); '."\n";
+            $fuente =  ' $mensaje = "Realizado con exito"; '."\n";
+            return $fuente;
+            break;
+        
+        case 'editar':
+            $fuente =  ' <?php  '."\n";
+            $fuente =  ' $sql=mysql_query(" UPDATE '.$nombrePlugin.' SET  '."\n";            
+            $i=0;
+                while ($i < $total_resultados){        
+                    $fuente .= ' '.$resultados[$i].' = $'.$resultados[$i].' ';
+                    $fuente .= ($i < $total_resultados-1)?" , ":"";
+                $i++;
+            }                                    
+            $fuente =  ' WHERE id = \'$id\' ",$conexion) or die ("Error: ".mysql_error());   '."\n";
+            return $fuente;
+            break;
+        
+        
+        case 'index':
+            $fuente =  ' <?php $sql=mysql_query("SELECT * FROM '.$nombrePlugin.' ORDER BY id DESC ",$conexion) or die ("Error: en el fichero:" .__FILE__ .\' linea: \'. __LINE__ .\'  \'.mysql_error());	  '."\n";
+            return $fuente;
+            break;
+        
+        case 'ver':
+            $fuente  =  ' <?php '."\n";
+            $fuente .=  '$sql=mysql_query( '."\n";
+            $fuente .= ' "SELECT * FROM '.$nombrePlugin.' WHERE id = \'$id\' ORDER BY id DESC   ",$conexion) or die ("Error: en el fichero:" .__FILE__ .\' linea: \'. __LINE__ .\' / \'.mysql_error());	'."\n";
+            return $fuente;
+            break;
+        
+        default:
+            $fuente = ""; 
+            return $fuente;
+            break;
+    }
+}
+
+function contenido_vista($controlador,$nombrePlugin){
+    global  $dbh; 
+//$resultados = resultados($nombrePlugin);
+    include "modelos/v_crea_plug.php";
+$total_resultados = count($resultados);
+
+
+    switch ($controlador) {                    
         case 'crear':
             $fuente  =  ' <?php '."\n";
             $fuente  .=  '     <form class="form-horizontal" action="index.php" method="post"> '."\n";
@@ -208,23 +295,7 @@ function contenido_modelos($controlador,$nombrePlugin){
 
             
             return $fuente;
-            break;
-        case 'borrar':
-            $fuente =  ' <?php '."\n";
-
-            
-            return $fuente;
-            break;
-        case 'buscar':
-            $fuente =  ' <?php '."\n";
-          
-            return $fuente;
-            break;
-        case 'detalles':
-            $fuente =  ' <?php '."\n";
-           
-            return $fuente;
-            break;
+            break; 
 
         default:
             $fuente = ""; 
@@ -233,10 +304,43 @@ function contenido_modelos($controlador,$nombrePlugin){
     }
 }
 
-function contenido_vista($controlador,$nombrePlugin){
-    switch ($modelos) {                    
-
-
+function contenido_reg($controlador,$nombrePlugin){
+    global  $dbh; 
+    //$resultados = resultados($nombrePlugin);
+    include "modelos/v_crea_plug.php";
+    $total_resultados = count($resultados);
+    
+    
+    switch ($controlador) {                    
+    case 'get':            
+        $fuente  = ' <?php '."\n";
+        $fuente .= ' $id          = $reg[\'id\'];  '."\n";
+        $fuente .= ' $grupo          = $reg[\'grupo\'];  '."\n";
+        return $fuente;
+        break;
+    
+    case 'post':            
+        $fuente  = ' <?php '."\n";
+        $fuente .= ' $id          = $reg[\'id\'];  '."\n";
+        $fuente .= ' $grupo          = $reg[\'grupo\'];  '."\n";
+        return $fuente;
+        break;
+    
+    case 'reg':            
+        $fuente  = ' <?php '."\n";
+        $fuente .= ' $id          = $reg[\'id\'];  '."\n";
+        $fuente .= ' $grupo          = $reg[\'grupo\'];  '."\n";
+        return $fuente;
+        break;
+    
+    case 'request':            
+        $fuente  = ' <?php '."\n";
+        $fuente .= ' $id          = $reg[\'id\'];  '."\n";
+        $fuente .= ' $grupo          = $reg[\'grupo\'];  '."\n";
+        return $fuente;
+        break;
+    
+    
         default:
             $fuente = ""; 
             return $fuente;
@@ -244,29 +348,26 @@ function contenido_vista($controlador,$nombrePlugin){
     }
 }
 
-function contenido_get($controlador,$nombrePlugin){
-    switch ($modelos) {                    
+function contenido_plugin($pagina,$nombrePlugin){
+    global  $dbh; 
+    
+    include "modelos/v_crea_plug.php";        
+        //$resultados = resultados($nombrePlugin);
+        $total_resultados = count($resultados);
 
-        default:
-            $fuente = ""; 
-            return $fuente;
-            break;
-    }
-}
 
-function contenido_plugin($pagina,$nombre_plugin){
     switch ($pagina) {
         case 'funciones.php':
             $fuente = ""; 
             return $fuente;
             break;
         case 'readme.txt':
-            $fuente = "Plugin: $nombre_plugin "; 
+            $fuente = "Plugin: $nombrePlugin "; 
             return $fuente;
             break;
         
         case 'COPYING':
-            $fuente = "Aca escriba el texto de la licencia del plugin: $nombre_plugin "; 
+            $fuente = "Aca escriba el texto de la licencia del plugin: $nombrePlugin "; 
             return $fuente;
             break;
         
@@ -278,7 +379,7 @@ function contenido_plugin($pagina,$nombre_plugin){
         
         
         case 'version':
-            $fuente = "Version: 0.01 "; 
+            $fuente = "0.01 "; 
             return $fuente;
             break;
         
@@ -293,99 +394,103 @@ function contenido_plugin($pagina,$nombre_plugin){
     }
 }
 
+/**
+ * con esto creamos los ficheros dentro de las carpetas MVC
+ * @global type $dbh
+ * @param type $nombrePlugin
+ * @param type $mvcg
+ */
+function magia_crear_ficheros_dentro_mvc($nombrePlugin,$mvcg){
+    global  $dbh; 
 
-
-
-
-
-
-function vceb($nombrePlugin,$mvcg){
- 
-// estos se cran por defecto enla raiz del pluging
-
-       $c = ['funciones.php','readme.txt','COPYING','.gitignore','version','menu'] ;
+switch ($mvcg) {
+case 'controlador':
+        $c = ['index','ver','crear','editar','borrar','buscar'] ;
+        $total = count($c);
+        
+        $i=0;
+        while ($i<$total) {  
+         
+        $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+        
+        // este va a ser el contedido que vamos a escribir en el documento
+        $contenido = contenido_controlador($c[$i],$nombrePlugin);
+      //  $contenido = $destino ;
+        
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;        
+case 'modelos':
+    $c = ['index','ver','crear','editar','borrar','buscar'] ;     
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        //$contenido = contenido_modelos($c[$i],$nombrePlugin );
+        $contenido = $destino ;
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;              
+case 'reg':
+    $c = ['get','post','reg','request'] ;   
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        //$contenido = contenido_reg($c[$i],$nombrePlugin );
+         $contenido = $destino ;
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;        
+case 'vista':
+    //estas son las paginas  a crear
+    $c = ['borrar','buscar','crear','editar','index','tr','tr_anadir','tr_editar','ver'] ;    
+    $total = count($c);
+    $i=0;
+        while ($i<$total) {        
+         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+                 // este va a ser el contedido que vamos a escribir en el documento
+        //$contenido = contenido_vista($c[$i],$nombrePlugin );
+         $contenido = $destino ;
+        $fp = fopen($destino, 'w');
+        fwrite($fp, $contenido);        
+        fclose($fp);
+        $i++;  
+        }
+        break;        
+case 'raiz':
+       
+         $c = ['funciones.php','readme.txt','COPYING','.gitignore','version','menu'] ;       
+       //$c = paginas_por_defecto_plugins('reg');
+       
        $total = count($c);
        $i=0;
         while ($i<$total) {        
          $destino = './plugins/'.$nombrePlugin.'/'.$c[$i].''; 
         // este va a ser el contedido que vamos a escribir en el documento
-        $contenido = contenido_plugin($c[$i],$nombrePlugin );
-        
-        
+        $contenido = $destino ; 
+         $contenido = ''; 
         $fp = fopen($destino, 'w');
         fwrite($fp, $contenido);        
         fclose($fp);
+        echo "$c[$i] se ha llenado el contenido <br>"; 
         $i++;  
         }
-
-switch ($mvcg) {
-case 'controlador':
-        $c = ['index','ver','crear','editar','borrar','buscar','detalles'] ;
-        $total = count($c);
         
-        $i=0;
-        while ($i<$total) {        
-        $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-        // este va a ser el contedido que vamos a escribir en el documento
-        $contenido = contenido_controlador($c[$i],$nombrePlugin );
-        
-        
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $contenido);        
-        fclose($fp);
-        $i++;  
-        }
         break;
         
-case 'modelos':
-    $c = ['buscar','index','ver'] ;        
-    $total = count($c);
-    $i=0;
-        while ($i<$total) {
-        
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-                 // este va a ser el contedido que vamos a escribir en el documento
-        $contenido = contenido_controlador($c[$i],$nombrePlugin );
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $contenido);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-      
-case 'reg':
-        $i=0;
-        while ($i<1) {
-        $c = ['reg','get','post','request'] ;
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-                 // este va a ser el contedido que vamos a escribir en el documento
-        $contenido = contenido_get($c[$i],$nombrePlugin );
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $contenido);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-case 'vista':
-    //estas son las paginas  a crear
-    $c = ['index','ver','crear','editar','borrar','buscar','detalles','tr','tr_anadir','tr_editar'] ;    
-    $total = count($c);
-    $i=0;
-        while ($i<$total) {        
-         $destino = './plugins/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
-                 // este va a ser el contedido que vamos a escribir en el documento
-        $contenido = contenido_controlador($c[$i],$nombrePlugin );
-        $fp = fopen($destino, 'w');
-        fwrite($fp, $contenido);        
-        fclose($fp);
-        $i++;  
-        }
-        break;
-        
-    default:
-        
+    default :
         break;
 }
 
@@ -395,7 +500,8 @@ case 'vista':
 
 
     
-}    
+} 
+
     
    
 

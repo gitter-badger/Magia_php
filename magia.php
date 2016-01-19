@@ -1,8 +1,14 @@
-    <?php 
-    function _t($p){
-        return$p;
-    }
-    ?>
+<?php     
+include "bd.php";
+include "conec.php";
+//include "mande_coneccion.php";
+include "./admin/funciones.php";
+if(isset($_REQUEST['a'])){$a = $_REQUEST['a'];} else {$a = "";}
+if(isset($_REQUEST['p'])){$p = $_REQUEST['p'];} else {$p = "";}
+if(isset($_REQUEST['tabla'])){$tabla = mysql_real_escape_string($_REQUEST['tabla']);}
+
+
+?>
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,59 +18,20 @@
 
     <body>
         <div class="container">
+            <?php 
+            include "vista/header.php";
+            ?>
+            
             
 
             
             
             
-
-        
             
 <?php 
-
-include "bd.php";
-include "conec.php";
-include "mande_coneccion.php";
-include "vista/header.php";
-
-
-if(isset($_REQUEST['a']))
-{
-    $a = $_REQUEST['a'];
-} else {
-    $a = "";
-}
-
 if($a=='configBd'){
     include "./request/updateDb.php"; 
 }
-
-
-if(isset($_REQUEST['p']))
-{
-    $p = $_REQUEST['p'];
-}
-else
-{
-    $p = "";
-}
-
-if(isset($_REQUEST['tabla']))
-{
-    
-    $tabla = mysql_real_escape_string($_REQUEST['tabla']);
-}
-else
-{
-    $p = "";
-}
-
-
-
-
-
-
-
 
 ?>
             
@@ -206,9 +173,9 @@ switch ($p) {
         include "vista/v_crear.php";        
         break;   
 // v_detalles         
-    case "v_detalles":
-        include "modelos/v_detalles.php";
-        include "vista/v_detalles.php";        
+    case "v_ver":
+        include "modelos/v_ver.php";
+        include "vista/v_ver.php";        
         break;   
 // Detalles1         
     case "v_detalles1":
@@ -269,9 +236,13 @@ switch ($p) {
              </div>
         
 </div>
+            
+            
             </div>            
-        
-        
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
         
     </body>
 </html>

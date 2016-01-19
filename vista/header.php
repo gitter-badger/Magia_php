@@ -26,7 +26,7 @@
       <ul class="nav navbar-nav">
         
           <li class="active"><a href="index.php">Index <span class="sr-only">(current)</span></a></li>
-        <li><a href="home.php?p=plugin">Home</a></li>
+        
         <li><a href="magia.php?p=plugin">Magia</a></li>
         <li><a href="plug.php?p=plugin">Plugins</a></li>
         

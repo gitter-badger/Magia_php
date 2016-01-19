@@ -1,8 +1,6 @@
-<h1 class="page-header">Base de datos: <?php echo "$bdatos"; ?> 
-    
-</h1>
 
-<p>Lista de tablas en la base de datos 
+
+<p>Lista de tablas en la base de datos <b><?php echo "$bdatos"; ?></b>: 
     <a href="home.php"><span class="glyphicon glyphicon-refresh"></span></a>
 </p>
 
@@ -38,7 +36,7 @@ foreach($resultado as $reg ) {
         <td>'.$reg[0].'</td>
         <td>-</td>
         <td>-</td>
-        <td><a href="index.php?p='.$reg[0].'">Crear plugin</a></td>
+        <td><a href="plug.php?p=plugin&nombre='.$reg[0].'">Crear plugin</a></td>
         
         
     </tr>';

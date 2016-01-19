@@ -1,8 +1,5 @@
 <?php 
 
-
-
-
 // verificar que solo tenga letras de a-z en minusculas
 // talvez guion bajo, medio, 
 // de todas maneras el nombre debe ser identico a la tabla de la BD
@@ -19,14 +16,19 @@ if(isset($_GET['nombre'])){
 }
 
 if($nombrePlugin){
-    $mvc =['controlador','modelos','reg','vista']; 
+    $mvc =['controlador','modelos','reg','vista','raiz']; 
+    $t= count($mvc);
     
+// creo la carpeta conel nombre delplugin
     mkdir('./plugins/'.$nombrePlugin.'');
-    $i=0;
-    while ($i<4){
+    
+    // ahora hago una repeticion creando a cada vuelta las carpetas dentro del plugin
+    $i=0; 
+    while ($i<$t){
         mkdir('./plugins/'.$nombrePlugin.'/'.$mvc[$i].'');
-        // llamamos la funcion que nos crea la extructura de la MVC
-        vceb($nombrePlugin, $mvc[$i]);
+        
+        // dentro de cada carpeta creo los ficheros que cada carpeta debe contenir
+            magia_crear_ficheros_dentro_mvc($nombrePlugin, $mvc[$i]);
         
         $i++;
     }
@@ -41,7 +43,7 @@ if($nombrePlugin){
 ?>
 
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation" class="active"><a href="#">Magia</a></li>
   <li role="presentation"><a href="#">Profile</a></li>
   <li role="presentation"><a href="#">Messages</a></li>
 </ul>

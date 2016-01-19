@@ -18,7 +18,7 @@ foreach($resultado as $reg=>$item ) {
 ?>
 
 
-WHERE id_<?php echo "$tabla"; ?> = '$id_<?php echo "$tabla"; ?> ",$conexion) or die ("Error: ".mysql_error());  
+WHERE id = '$id' ",$conexion) or die ("Error: ".mysql_error());  
 
 
 
