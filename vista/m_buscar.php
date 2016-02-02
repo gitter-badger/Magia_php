@@ -23,7 +23,8 @@ foreach($resultado as $reg=>$item ) {
 
 ORDER BY id DESC   
 ",$conexion) or die ("Error:".mysql_error());	
-?></textarea>
+
+</textarea>
 
 
 PDO

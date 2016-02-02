@@ -1,0 +1,1 @@
+<?php  $servidor = "localhost"; $bdatos = "latino_doc"; $usuario = "root"; $clave = "";

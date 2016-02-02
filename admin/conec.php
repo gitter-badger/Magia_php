@@ -1,5 +1,5 @@
 <?php	
 
-$dbh = new PDO("mysql:host=localhost; dbname=subeybaja",   'root', '');
+$dbh = new PDO("mysql:host=$servidor; dbname=$bdatos",   $usuario, $clave);
 ?>
 

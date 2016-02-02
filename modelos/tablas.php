@@ -1,13 +1,11 @@
 <?php	
-//$tabla = mysql_real_escape_string($_REQUEST['tabla']);
 /*
 
-
-            $sql        = "SELECT * FROM $tabla";
+            $sql        = "SHOW FULL TABLES";
             $stmt       = $dbh->prepare($sql);
             $stmt->execute(array(           
-                ":tabla"=>"$tabla"
+               // ":id_personal"=>"$u_id_personal"
                 )
             );        
             $resultado = $stmt->fetchAll();
-?>  
+?>   

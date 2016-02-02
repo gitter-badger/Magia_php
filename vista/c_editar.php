@@ -5,8 +5,8 @@
 <textarea class="form-control" rows="20">
 &lt;?php
 $pagina = "<?php echo $tabla;  ?>";
-include 'header.php';
-include "./plugins/<?php echo $tabla;  ?>/funciones.php";
+//include 'header.php';
+include "<?php echo "$path_magia_plugins/$tabla";  ?>/funciones.php";
 if (permisos_tiene_permiso('editar', '<?php echo $tabla;  ?>', $u_grupo)) {
     if(isset($_REQUEST['a'])=='editar'){
 
@@ -18,13 +18,13 @@ echo "\n";
 }
 ?>
 
-        include "./plugins/<?php echo $tabla;  ?>/modelos/editar.php"; 
-        include "./plugins/<?php echo $tabla;  ?>/vista/editar.php"; 
+        include "<?php echo "$path_magia_plugins/$tabla";  ?>/modelos/editar.php"; 
+        include "<?php echo "$path_magia_plugins/$tabla";  ?>/vista/editar.php"; 
     }else{
              $id 		= mysql_real_escape_string($_REQUEST['id']);     
-            include "./plugins/<?php echo $tabla;  ?>/modelos/ver.php";
-            include "./plugins/<?php echo $tabla;  ?>/reg/reg.php";
-            include "./plugins/<?php echo $tabla;  ?>/vista/editar.php";
+            include "<?php echo "$path_magia_plugins/$tabla";  ?>/modelos/ver.php";
+            include "<?php echo "$path_magia_plugins/$tabla";  ?>/reg/reg.php";
+            include "<?php echo "$path_magia_plugins/$tabla";  ?>/vista/editar.php";
 
     } 
        

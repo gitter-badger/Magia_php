@@ -1,0 +1,8 @@
+<?php 
+/**
+ * Aca se define el lugar de la carpeta plugin donde se crearan los diferetes ficheros
+ */
+
+$path_magia_plugins = "./magia_plugins"; // sin lina oblicua al final 
+
+?>

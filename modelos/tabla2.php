@@ -1,6 +1,6 @@
 <?php	
 //$tabla = mysql_real_escape_string($_REQUEST['tabla']);
-
+/*
 
 
             $sql        = "SHOW COLUMNS FROM $tabla";

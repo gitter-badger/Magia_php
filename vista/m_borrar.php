@@ -18,7 +18,7 @@ id = '$id'
 ",$conexion) or die ("Error ".mysql_error());
 
 $mensaje = "Realizado";
-?&gt;
+
 
 </textarea>
 
@@ -32,7 +32,7 @@ $stmt->execute(array(
 )
 );
 $mensaje = "Realizado con exito";
-?&gt;
+
 </textarea>
 
 

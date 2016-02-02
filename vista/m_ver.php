@@ -11,7 +11,7 @@ $sql=mysql_query(
         . "ORDER BY id DESC   ",$conexion) or die ("Error:".mysql_error());
 $reg = mysql_fetch_array($sql);
 	
-?>
+
 </textarea>
 
 
@@ -27,8 +27,7 @@ PDO
                 ":id"=>"$id"
                 )
             );        
-            $reg = $stmt->fetchAll();
-?&gt;  
+            $reg = $stmt->fetchAll(); 
 
 
 
@@ -40,21 +39,5 @@ PDO
 
 
 
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
 
 

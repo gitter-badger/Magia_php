@@ -5,8 +5,9 @@
 </h1>
 
 
-
+Sin proteccion SQL
 <textarea class="form-control" rows="10">
+&lt;?php
 <?php 
 foreach($resultado as $reg ) {
     $min = strtolower($reg[0]); // la cadena a minusculas
@@ -16,7 +17,8 @@ foreach($resultado as $reg ) {
     $Mlf = mb_strtoupper($reg[0]);
     $tipo_campo = $reg[1];
     
-    echo '$'.$reg[0].' = $_POST[\''.$reg[0].'\'];';
+    echo '$'.$reg[0].' = $_POST[\''.$reg[0].'\']);';
+    //echo '$'.$reg[0].' = mysql_real_escape_string($_POST[\''.$reg[0].'\']);';
     echo "\n";        
 }
 ?>
@@ -24,6 +26,7 @@ foreach($resultado as $reg ) {
 
 Proteccion sql
 <textarea class="form-control" rows="10">
+&lt;?php
 <?php 
 foreach($resultado as $reg ) {
     $min = strtolower($reg[0]); // la cadena a minusculas

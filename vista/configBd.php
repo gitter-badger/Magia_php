@@ -1,3 +1,6 @@
+<h1>Configurar la base de datos </h1>
+
+
 <form class="form-horizontal" action="" method="get">
     <input type="hidden" name="a" value="configBd">
     
@@ -40,3 +43,4 @@
     
     
 </form>
+

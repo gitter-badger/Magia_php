@@ -1,4 +1,5 @@
-<h1 class="page-header">
+<?php 
+/*<h1 class="page-header">
 </span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/modelos/ver.php
 </h1>
 
@@ -42,3 +43,5 @@
 <br><br><br><br><br><br><br><br><br><br>
 
 
+*/
+?>

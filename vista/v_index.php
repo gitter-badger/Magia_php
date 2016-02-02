@@ -27,18 +27,18 @@
     <tbody>
         &lt;?php
         while ($reg = mysql_fetch_array($sql)) {
-            include "./plugins/<?php echo $tabla; ?>/reg/reg.php";
+            include "<?php echo "$path_magia_plugins/$tabla"; ?>/reg/reg.php";
                 if(permisos_tiene_permiso('editar', '<?php echo $tabla; ?>', $u_grupo)){
-                    include "./plugins/<?php echo $tabla; ?>/vista/tr_editar.php";
+                    include "<?php echo "$path_magia_plugins/$tabla"; ?>/vista/tr_editar.php";
                 }else{
-                    include "./plugins/<?php echo $tabla; ?>/vista/tr.php";
+                    include "<?php echo "$path_magia_plugins/$tabla"; ?>/vista/tr.php";
                 }            
         }
         ?>
     </tbody>
      &lt;?php
-   if(permisos_tiene_permiso('crear', '<?php echo $tabla; ?>', $u_grupo)){
-                include "./plugins/<?php echo $tabla; ?>/vista/tr_anadir.php";
+   if(permisos_tiene_permiso('crear', '<?php echo "$tabla"; ?>', $u_grupo)){
+                include "<?php echo "$path_magia_plugins/$tabla"; ?>/vista/tr_anadir.php";
             }
    ?>
     

@@ -5,8 +5,8 @@
 <textarea class="form-control" rows="20">
 &lt;?php
 $pagina = "<?php echo $tabla;  ?>";
-include 'header.php';
-include "./plugins/<?php echo $tabla;  ?>/funciones.php";
+//include 'header.php';
+include "<?php echo "$path_magia_plugins/$tabla";  ?>/funciones.php";
 if (permisos_tiene_permiso('crear', '<?php echo $tabla;  ?>', $u_grupo)) {
     if(isset($_REQUEST['a'])=='crear'){
 
@@ -18,10 +18,10 @@ echo "\n";
 }
 ?>
         
-        include "./plugins/<?php echo $tabla;  ?>/modelos/crear.php"; 
-        include "./plugins/<?php echo $tabla;  ?>/vista/crear.php"; 
+        include "<?php echo "$path_magia_plugins/$tabla";  ?>/modelos/crear.php"; 
+        include "<?php echo "$path_magia_plugins/$tabla";  ?>/vista/crear.php"; 
     }else{
-        include "./plugins/<?php echo $tabla;  ?>/vista/crear.php"; 
+        include "<?php echo "$path_magia_plugins/$tabla";  ?>/vista/crear.php"; 
     } 
       
 } else {

@@ -1,9 +1,11 @@
+<?php 
+/*
 <h1 class="page-header">
 </span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/modelos/editar.php
 </h1>
 
 
-<textarea class="form-control" rows="10">
+<textarea class="form-control" rows="5">
 &lt;?php
             $sql        = "SELECT FROM <?php echo "$tabla";  ?> WHERE id_<?php echo "$tabla";  ?> = :id_<?php echo "$tabla";  ?>";
             $stmt       = $dbh->prepare($sql);
@@ -42,3 +44,7 @@
 <br><br><br><br><br><br><br><br><br><br>
 
 
+
+ * 
+ *  */
+?>
