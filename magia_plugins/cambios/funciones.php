@@ -1,5 +1,6 @@
 <?php 
-function index(){ 
-    return true;  
-    
-} 
+/**
+ * Una funcio de base del plugin
+ * @return boolean
+ */
+function index(){ return true;  } 

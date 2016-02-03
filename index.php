@@ -180,12 +180,12 @@ if (isset($tabla)) {
 
 // v_crear         
                         case "v_crear":
-                            include "modelos/v_crear.php";
+                           // include "modelos/v_crear.php";
                             include "vista/v_crear.php";
                             break;
 // v_detalles         
                         case "v_ver":
-                            include "modelos/v_ver.php";
+                           // include "modelos/v_ver.php";
                             include "vista/v_ver.php";
                             break;
 // Detalles1         
@@ -196,7 +196,7 @@ if (isset($tabla)) {
 
 // v_editar         
                         case "v_editar":
-                            include "modelos/v_editar.php";
+                           // include "modelos/v_editar.php";
                             include "vista/v_editar.php";
                             break;
 
@@ -235,14 +235,14 @@ if (isset($tabla)) {
 
 // configBd         
                         case "configBd":
-                            include "modelos/configBd.php";
+                            //include "modelos/configBd.php";
                             include "vista/configBd.php";
                             break;
 
 
 // define_variables         
                         case "config":
-                            include "modelos/config.php";
+                            //include "modelos/config.php";
                             include "vista/config.php";
                             break;
                         
@@ -261,7 +261,7 @@ if (isset($tabla)) {
 
 
                         default :
-                            include "modelos/index.php";
+                          //  include "modelos/index.php";
                             include "vista/index.php";
                             break;
                     }

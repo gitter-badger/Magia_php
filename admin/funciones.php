@@ -150,7 +150,14 @@ function contenido_controlador($controlador,$nombrePlugin){
             break;
     }
 }
-
+/**
+ * Esta funcion llena el contenido de los diferentes ficheros que se encuentran en el plugin
+ * @global type $path_magia_plugins la carpeta donde se crea los plugins
+ * @global type $dbh coneccion a la BD
+ * @param type $modelos 
+ * @param type $nombrePlugin Ll plugin que se esta creando
+ * @return string
+ */
 function contenido_modelos($modelos,$nombrePlugin){
     global $path_magia_plugins, $dbh; 
     //$resultados = resultados($nombrePlugin);
@@ -255,7 +262,7 @@ function contenido_modelos($modelos,$nombrePlugin){
     }
 }
 
-
+/*
 function demos(){    
     global $path_magia_plugins, $dbh; 
     //$resultados = resultados($nombrePlugin);
@@ -273,7 +280,16 @@ function demos(){
             
             return $resultados;
 }
+*/
 
+/**
+ * Esta funcion llena el conteido de las paginas que se crean en la vista del plugin
+ * @global type $path_magia_plugins
+ * @global type $dbh
+ * @param type $vista
+ * @param type $nombrePlugin
+ * @return string
+ */
 
 function contenido_vista($vista,$nombrePlugin){
     global $path_magia_plugins, $dbh; 
@@ -523,7 +539,14 @@ case 'ver':
     }
 }
 
-
+/**
+ * Esta función llena las páginas que se crean los registros del plugin
+ * @global type $path_magia_plugins
+ * @global type $dbh
+ * @param type $controlador
+ * @param type $nombrePlugin
+ * @return string
+ */
 function contenido_reg($controlador,$nombrePlugin){
     global $path_magia_plugins, $dbh; 
     //$resultados = resultados($nombrePlugin);
@@ -588,6 +611,14 @@ function contenido_reg($controlador,$nombrePlugin){
     }
 }
 
+/**
+ * Esta funcion llena el contenido de los ficheros extras del plugin
+ * @global type $path_magia_plugins
+ * @global type $dbh
+ * @param type $pagina
+ * @param type $nombrePlugin
+ * @return string
+ */
 function contenido_plugin($pagina,$nombrePlugin){
     global $path_magia_plugins, $dbh; 
     //$resultados = resultados($nombrePlugin);
@@ -636,6 +667,13 @@ function contenido_plugin($pagina,$nombrePlugin){
     }
 }
 
+/**
+ * Esta funcion es la que crea los diferentes ficheros dentro de : Modelos, vista, controlador, reg, del plugin
+ * @global type $path_magia_plugins
+ * @global type $dbh
+ * @param type $nombrePlugin
+ * @param type $mvcg
+ */
 function magia_crear_ficheros_dentro_mvc($nombrePlugin,$mvcg){
     global  $path_magia_plugins, $dbh; 
 
@@ -738,6 +776,11 @@ case 'raiz':
     
 } 
 
+/**
+ * Esta funcion sirbe para traducir las frases del sitio web
+ * @param type $palabra
+ * @return type
+ */
 function _t($palabra){
     return $palabra;
 }
