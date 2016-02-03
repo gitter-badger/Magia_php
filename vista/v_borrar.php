@@ -1,8 +1,6 @@
 <h1 class="page-header">
 </span> <a href="?p=magia">/</a><?php echo "$tabla"; ?>/vista/ [boton borrar]
 </h1>
-<a class="btn btn-danger" href="index.php?p=grupos&c=borrar&id=<?php echo $id; ?>">Borrar</a>
-<hr>
 
 
 

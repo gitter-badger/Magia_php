@@ -1,7 +1,7 @@
 
 
 <p>Lista de tablas en la base de datos <b><?php echo "$bdatos"; ?></b>: 
-    <a href="magia.php?p=plugin"><span class="glyphicon glyphicon-refresh"></span></a>
+    <a href="index.php?p=plugins_lista"><span class="glyphicon glyphicon-refresh"></span></a>
 </p>
 
 <div class="table-responsive"> 		  
@@ -27,13 +27,13 @@ foreach($resultado as $reg ) {
         <td>Creado</td>
         <td>0.01 / 0.02</td>
         <td>
-        <a href="index.php?tabla='.$reg[0].'&p=c_index">Codigos</a>
+        <a href="index.php?tabla='.$reg[0].'&p=c_index">Codigos</a> | <a href="gestion.php?p='.$reg[0].'&c=index">Gestion</a>
          </td>                
     </tr>';
     }else{
         echo '<tr>        
         <td>'.$i.'</td>
-        <td><a href="magia.php?nombrePlugin='.$reg[0].'">'.$reg[0].'</a></td>
+        <td><b>'.$reg[0].'</b></td>
         <td>-</td>
         <td>-</td>
         <td><a href="index.php?p=plugins_crear&nombrePlugin='.$reg[0].'">Crear plugin</a></td>

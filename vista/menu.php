@@ -43,10 +43,7 @@
         </ul>                                
         <li>registros</li>
         <ul>                                        
-            <li><a href="index.php?p=r_registros&tabla=<?php echo "$tabla"; ?>">reg.php</a></li>
-        </ul>                                
-        <li>Datos</li>
-        <ul>                                        
+            <li><a href="index.php?p=r_registros&tabla=<?php echo "$tabla"; ?>">reg.php</a></li>                                      
             <li><a href="index.php?p=d_get&tabla=<?php echo "$tabla"; ?>">GET</a></li>
             <li><a href="index.php?p=d_post&tabla=<?php echo "$tabla"; ?>">POST</a></li>
             <li><a href="index.php?p=d_request&tabla=<?php echo "$tabla"; ?>">REQUEST</a></li>

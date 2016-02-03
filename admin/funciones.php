@@ -1,6 +1,13 @@
 <?php   
 
-
+/**
+ * Llenamos los ficheros creados en en plugin
+ * @global type $path_magia_plugins la carpeta donde se crea los plugins
+ * @global type $dbh  coneccion a la BD
+ * @param type $controlador nombre del controlador
+ * @param type $nombrePlugin el plugin que se esta creando
+ * @return string 
+ */
 function contenido_controlador($controlador,$nombrePlugin){
     global $path_magia_plugins, $dbh; 
     //$resultados = resultados($nombrePlugin);
@@ -8,7 +15,10 @@ function contenido_controlador($controlador,$nombrePlugin){
     $total_resultados = count($resultados);
 
     switch ($controlador) {  
-//*************************************************        
+//*************************************************     
+        /**
+         * caso de ser la pagina borrar.php
+         */
         case 'borrar':
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -125,7 +135,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             
             $fuente .= '     $id 		= mysql_real_escape_string($_REQUEST[\'id\']);   '."\n";
             
-            $fuente .= '     include "'.$path_magia_plugins.'/'.$nombrePlugin.'/controlador/ver.php"; '."\n";            
+            $fuente .= '     include "'.$path_magia_plugins.'/'.$nombrePlugin.'/modelos/ver.php"; '."\n";            
             $fuente .= '     include "'.$path_magia_plugins.'/'.$nombrePlugin.'/reg/reg.php"; '."\n";
             $fuente .= '     include "'.$path_magia_plugins.'/'.$nombrePlugin.'/vista/ver.php"; '."\n";
             $fuente .= ' } else { '."\n";
@@ -337,7 +347,7 @@ case 'crear':
             return $fuente;
             break;
             
-            
+//*************************************************            
 case 'editar':                
                 $fuente =  '     <form class="form-horizontal" method="" action=""> '."\n";
                 $fuente .=  '     <input type="hidden" name="accion" value="editar"> '."\n";                
@@ -362,7 +372,7 @@ case 'editar':
             return $fuente;
             break; 
             
-            
+//*************************************************            
 case 'index':                
             
                 
@@ -545,13 +555,13 @@ function contenido_reg($controlador,$nombrePlugin){
             }  
         return $fuente;
         break;
-    
+//****************** reg **************************    
     case 'reg':            
         $fuente  = ' <?php '."\n";
         $i=0;
                 foreach($resultados as $reg ) {       
                     $var = $reg[0];
-                   $fuente .= '  $'.$var.' = mysql_real_escape_string($reg[\''.$var.'\']); '  ."\n";                                
+                   $fuente .= '  $'.$var.' = $reg[\''.$var.'\']; '  ."\n";                                
                 $i++;
         
                 }
@@ -587,7 +597,10 @@ function contenido_plugin($pagina,$nombrePlugin){
 
     switch ($pagina) {
         case 'funciones.php':
-            $fuente = " es la fuente de funcioness"; 
+            $fuente = "<?php"; 
+            $fuente .= " function index(){"; 
+            $fuente .= " return true; "; 
+            $fuente .= " } "; 
             return $fuente;
             break;
         case 'readme.txt':
