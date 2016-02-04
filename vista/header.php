@@ -44,6 +44,8 @@
       <ul class="nav navbar-nav">
         
           <li class="active"><a href="index.php">Index <span class="sr-only">(current)</span></a></li>
+          <li><a href="index.php?p=plugins_lista">Gestion</a></li>
+          
         
 
           
@@ -57,17 +59,35 @@
               role="button" 
               aria-haspopup="true" 
               aria-expanded="false">
-              Dropdown 
+              Plugins 
               <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+              
+              <?php 
+              
+              
+              $lista_plugins = scandir($path_magia_plugins);
+                $plugins = [];
+
+                foreach ($lista_plugins as $key => $value) {
+
+                    if($value !='.'){
+                        array_push($plugins, $value);
+                    }
+                }              
+              $total_plugins = count($plugins);
+              for($i = 0; $i <$total_plugins; $i++){
+                  echo '<li><a href="gestion.php?p='.$plugins[$i].'&c=index">'.ucwords($plugins[$i]).'</a></li>'; 
+              }
+              ?>
+              
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="index.php?p=plugins_lista">Crear plugin</a></li>
+            
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
+            
           </ul>
         </li>
       </ul>
@@ -84,7 +104,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
 
 
 
