@@ -33,3 +33,10 @@
 </table> 
 
 
+<?php 
+//echo cambios_version();
+?>
+
+
+
+

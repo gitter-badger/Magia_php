@@ -27,11 +27,11 @@ if (isset($_REQUEST['tabla'])) {
 <html>
     <head>
         <title>Magia</title>
-        
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
-    
+
     </head>
 
     <body>
@@ -40,23 +40,23 @@ if (isset($_REQUEST['tabla'])) {
             include "vista/header.php";
             ?>
 
-<?php
-if ($a == 'configBd') {
-    include "./request/updateDb.php";
-}
+            <?php
+            if ($a == 'configBd') {
+                include "./request/updateDb.php";
+            }
 
-if ($a == 'config') {
-    include "./request/config.php";
-}
-?>
+            if ($a == 'config') {
+                include "./request/config.php";
+            }
+            ?>
 
             <div class="row">
                 <div class="col-lg-3">
-<?php
-if (isset($tabla)) {
-    include "vista/menu.php";
-}
-?>                  
+                    <?php
+                    if (isset($tabla)) {
+                        include "vista/menu.php";
+                    }
+                    ?>                  
 
                 </div>
                 <div class="col-lg-9">
@@ -99,7 +99,7 @@ if (isset($tabla)) {
 
 // c_index         
                         case "c_index":
-                           // include "modelos/v_detalles.php";
+                            // include "modelos/v_detalles.php";
                             include "vista/c_index.php";
                             break;
 
@@ -180,12 +180,12 @@ if (isset($tabla)) {
 
 // v_crear         
                         case "v_crear":
-                           // include "modelos/v_crear.php";
+                            // include "modelos/v_crear.php";
                             include "vista/v_crear.php";
                             break;
 // v_detalles         
                         case "v_ver":
-                           // include "modelos/v_ver.php";
+                            // include "modelos/v_ver.php";
                             include "vista/v_ver.php";
                             break;
 // Detalles1         
@@ -196,7 +196,7 @@ if (isset($tabla)) {
 
 // v_editar         
                         case "v_editar":
-                           // include "modelos/v_editar.php";
+                            // include "modelos/v_editar.php";
                             include "vista/v_editar.php";
                             break;
 
@@ -245,8 +245,8 @@ if (isset($tabla)) {
                             //include "modelos/config.php";
                             include "vista/config.php";
                             break;
-                        
-                        
+
+
 // plugins_crear         
                         case "plugins_crear":
                             include "modelos/plugins_crear.php";
@@ -261,7 +261,7 @@ if (isset($tabla)) {
 
 
                         default :
-                          //  include "modelos/index.php";
+                            //  include "modelos/index.php";
                             include "vista/index.php";
                             break;
                     }
@@ -277,7 +277,7 @@ if (isset($tabla)) {
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 
     </body>
 </html>

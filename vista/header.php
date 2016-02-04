@@ -6,7 +6,8 @@
     <div class="col-lg-6">
        
         
-            <form class="form-inline">
+<?php 
+/*            <form class="form-inline">
               <div class="form-group">
                   <label for="login" class="sr-only">Login</label>
                 <input type="text" class="form-control" id="login" placeholder="Login">
@@ -16,7 +17,8 @@
                 <input type="password" class="form-control" id="clave" placeholder="clave">
               </div>
               <button type="submit" class="btn btn-default">Entrar</button>
-            </form>
+            </form>*/
+?>
         
         
         
@@ -48,9 +50,16 @@
         
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-         
-          
+          <a 
+              href="#" 
+              class="dropdown-toggle" 
+              data-toggle="dropdown" 
+              role="button" 
+              aria-haspopup="true" 
+              aria-expanded="false">
+              Dropdown 
+              <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
@@ -60,8 +69,6 @@
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-          
-          
         </li>
       </ul>
         

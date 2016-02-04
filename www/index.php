@@ -9,10 +9,44 @@
 
 (0.01, .0.02, 0.03)
 
-<p>Descripcion</p>
+<p>si (if): Evalua una condicion y si el resultado es [verdadero] ejecuta
+las instrucciones a continuacion.</p>
 
 
-<pre>string si ( string $string )</pre>
+
+
+<pre>
+si (condicion)
+    "codigo"
+fin
+</pre>
+
+
+<p>En caso de que el resultado de la condición sea [falso] se deberá de ejecutar
+el código despues de la palabra reservada [otro]</p>
+
+
+
+<pre>
+si (condicion)
+    "codigo"
+sino
+    "codigo"
+fin
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -23,7 +57,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Par1</th>
+            <th>Parametro</th>
             <th>Descripcion</th>
 
         </tr>
@@ -31,29 +65,14 @@
     
     <tbody>
         <tr>
-            <td>T</td>
-            <td>Para tabla</td>
+            <td>Par 1</td>
+            <td>Descripcion de la accion del parametro en la funcion</td>
         </tr>
         <tr>
-            <td>T</td>
-            <td>Para tabla</td>
+            <td>Par 2</td>
+            <td>Descripcion de la accion del parametro en la funcion</td>
         </tr>
-        <tr>
-            <td>T</td>
-            <td>Para tabla</td>
-        </tr>
-        <tr>
-            <td>T</td>
-            <td>Para tabla</td>
-        </tr>
-        <tr>
-            <td>T</td>
-            <td>Para tabla</td>
-        </tr>
-        <tr>
-            <td>T</td>
-            <td>Para tabla</td>
-        </tr>
+      
     </tbody>
 </table>
 
@@ -64,18 +83,29 @@
 <h2>Valores devueltos</h2>
 
 
-<pre>Returns zero on success, or FALSE on error.
-
-If the call was interrupted by a signal, sleep() returns a non-zero value. On Windows, this value will always be 192 (the value of the WAIT_IO_COMPLETION constant within the Windows API). On other platforms, the return value will be the number of seconds left to sleep.
+<pre>
+Explicacion de los valores devueltos por la funcion 
+Explicacion de los valores devueltos por la funcion 
+Explicacion de los valores devueltos por la funcion 
+Explicacion de los valores devueltos por la funcion 
+Explicacion de los valores devueltos por la funcion 
 </pre>
 
 
 <h2>Errors/Exceptions</h2>
 
 
-If the specified number of seconds is negative, this function will generate a E_WARNING.
+<p>
+    En caso de haber errores aca se explica la manera de manejarlos 
+    En caso de haber errores aca se explica la manera de manejarlos 
+    En caso de haber errores aca se explica la manera de manejarlos 
+    En caso de haber errores aca se explica la manera de manejarlos 
+</p>
 
 <h2>Cambios</h2>
+<p>
+    Esta es la evoculicon de la funcion en las diferentes versiones de latino
+</p>
 
 <table class="table table-striped">
     <thead>
@@ -89,7 +119,7 @@ If the specified number of seconds is negative, this function will generate a E_
     <tbody>
         <tr>
             <td>0.02</td>
-            <td>Es la descrip</td>
+            <td>Se le agrea una otra cualidad la cual es incompatible con la version anterior </td>
         </tr>
     </tbody>
 </table>
@@ -100,7 +130,15 @@ If the specified number of seconds is negative, this function will generate a E_
 
 <h2>Ejemplos</h2>
 
+<pre>
+sexo = hombre
 
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
 
 
 
@@ -118,13 +156,87 @@ If the specified number of seconds is negative, this function will generate a E_
 
 
 <h3>Contribuciones de usuario</h3>
-This may seem obvious, but I thought I would save someone from something that just confused me: you cannot use sleep() to sleep for fractions of a second. This:
 
-<?php sleep(0.25) ?>
+Explicacion del ejemplo 1
+<pre>
+sexo = hombre
 
-will not work as expected. The 0.25 is cast to an integer, so this is equivalent to sleep(0). To sleep for a quarter of a second, use:
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
 
-<?php usleep(250000) ?>
+
+Explicacion del ejemplo 
+
+<pre>
+sexo = hombre
+
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
+
+
+Explicacion del ejemplo 
+<pre>
+sexo = hombre
+
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
+
+Explicacion del ejemplo 
+<pre>
+sexo = hombre
+
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
+
+
+Explicacion del ejemplo 
+<pre>
+sexo = hombre
+
+si(sexo == hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+</pre>
+
+
+Explicacion del ejemplo 
+<pre>
+sexo = hombre
+
+si(sexo es igual a hombre)
+    escribir("Hola Sr.")    
+sino
+    escribir("Hola srta.")
+fin
+
+
+si (sexo es superior a 8)
+    escribir("Quiero un ocho")
+sino 
+    escribir("No quiero nada")
+</pre>
+
+
+
+
 
 
 
