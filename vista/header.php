@@ -78,7 +78,7 @@
                 }              
               $total_plugins = count($plugins);
               for($i = 0; $i <$total_plugins; $i++){
-                  echo '<li><a href="gestion.php?p='.$plugins[$i].'&c=index">'.ucwords($plugins[$i]).'</a></li>'; 
+                  echo '<li> <a href="gestion.php?p='.$plugins[$i].'&c=index"><span class="glyphicon glyphicon-th-list"></span> '.ucwords($plugins[$i]).'</a></li>'; 
               }
               ?>
               

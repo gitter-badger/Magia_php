@@ -10,7 +10,7 @@
                 <tr>
                     <th> #</th>
                     <th> Table</th>
-                    <th> Pluging de gestion</th>
+                    
                     <th> Version instlada / version actual</th>
                     <th> Accion</th>
                 </tr>
@@ -20,7 +20,7 @@
 $i = 1; 
 foreach($resultado as $reg ) {
     
-    if(file_exists($path_magia_plugins.'/'.$reg[0])){
+    if(file_exists($path_instalacion_plugins.'/'.$reg[0])){
         echo '<tr>        
         <td>'.$i.'</td>
         <td>'.$reg[0].'</td>
@@ -34,8 +34,8 @@ foreach($resultado as $reg ) {
         echo '<tr>        
         <td>'.$i.'</td>
         <td><b>'.$reg[0].'</b></td>
-        <td>-</td>
-        <td>-</td>
+        
+        <td>'.$path_instalacion_plugins.'/'.$reg[0].'</td>
         <td><a href="index.php?p=plugins_crear&nombrePlugin='.$reg[0].'">Crear plugin</a></td>
         
         

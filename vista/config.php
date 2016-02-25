@@ -1,12 +1,27 @@
 <h1>Extructura</h1>
 
-<p>Te sugerimos que lo hagas con esta extrucutra</p>
 
-www/magia/<br>
-www/magia/<b><?php echo $path_magia_plugins; ?></b>/ <-- aca <br>
-www/modelos<br>
-www/magia/reg/request/<br>
-www/magia/reg/vista/<br>
+
+<?php 
+echo "La carpeta donde se instalar los plugins (path_instalacion_plugins) es: "; 
+echo "$path_instalacion_plugins"; 
+echo "<br>"; 
+echo "La carpeta donde se instalar la raiz de los plugins(path_plugins) es: "; 
+echo "$path_plugins";  
+echo "<br>";
+echo "La carpeta donde se instalar los controladores es: "; 
+echo "$path_plugins_controlador"; 
+echo "<br>";
+echo "La carpeta donde se instalar los modelos es: "; 
+echo "$path_plugins_modelos"; 
+echo "<br>";
+echo "La carpeta donde se instalar las vistas es: "; 
+echo "$path_plugins_vista";  
+
+echo "<br>";
+echo "La carpeta donde se instalar los registros es: "; 
+echo "$path_plugins_reg";  
+?>
 
 <hr>
 
@@ -15,9 +30,74 @@ www/magia/reg/vista/<br>
     
     
   <div class="form-group">
-    <label for="path_magia_plugins" class="col-sm-4 control-label">Path de magia plugins</label>
-    <div class="col-sm-4">
-        <input type="text" name="path_magia_plugins" class="form-control" id="path_magia_plugins" placeholder="magia_plugins" value="<?php echo "$path_magia_plugins"; ?>">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path de instalacion plugins</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_instalacion_plugins" 
+               class="form-control" 
+               id="path_instalacion_plugins" 
+               placeholder="path_instalacion_plugins" 
+               value="<?php echo "$path_instalacion_plugins"; ?>">
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path plugins</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_plugins" 
+               class="form-control" 
+               id="path_plugins" 
+               placeholder="path_plugins" 
+               value="<?php echo "$path_plugins"; ?>">
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path Controlador</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_plugins_controlador" 
+               class="form-control" 
+               id="path_plugins_controlador" 
+               placeholder="path_plugins_controlador" 
+               value="<?php echo "path_plugins_controlador"; ?>">
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path Modelos</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_plugins_modelos" 
+               class="form-control" 
+               id="path_plugins_modelos" 
+               placeholder="path_plugins_modelos" 
+               value="<?php echo "$path_plugins_modelos"; ?>">
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path vista</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_plugins_vista" 
+               class="form-control" 
+               id="path_plugins_vista" 
+               placeholder="path_plugins_vista" 
+               value="<?php echo "$path_plugins_vista"; ?>">
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label for="path_magia_plugins" class="col-sm-2 control-label">Path reg</label>
+    <div class="col-sm-10">
+        <input type="text" 
+               name="path_plugins_reg" 
+               class="form-control" 
+               id="path_plugins_reg" 
+               placeholder="path_plugins_reg" 
+               value="<?php echo "$path_plugins_reg"; ?>">
     </div>
   </div>
     

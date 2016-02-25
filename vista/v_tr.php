@@ -9,8 +9,8 @@ foreach($resultado as $reg ) {
 }
 ?>			                        		                        
 <td>
-    <a href="index.php?p=<?php echo $tabla; ?>&c=ver&id='.$id.'">Ver</a> |   
-    <a href="index.php?p=<?php echo $tabla; ?>&c=editar&id='.$id.'">Editar</a>    
+    <a href="'.$_SERVER['PHP_SELF'].'?p=<?php echo $tabla; ?>&c=ver&id='.$id.'">Ver</a> |   
+    <a href="'.$_SERVER['PHP_SELF'].'?p=<?php echo $tabla; ?>&c=editar&id='.$id.'">Editar</a>    
     
 </td></tr>';
 

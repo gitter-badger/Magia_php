@@ -1,8 +1,7 @@
-<?php 
-/**
- * Aca se define el lugar de la carpeta plugin donde se crearan los diferetes ficheros
- */
-
-$path_magia_plugins = "./magia_plugins"; // sin lina oblicua al final 
-
-?>
+<?php
+$path_instalacion_plugins = "../latino_documentacion/www/admin";
+$path_plugins = "../admin"; 
+$path_plugins_controlador = "..admin/"; 
+$path_plugins_modelos = ""; 
+$path_plugins_vista = ""; 
+$path_plugins_reg = ""; 
