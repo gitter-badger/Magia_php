@@ -5,6 +5,7 @@ include "admin/conec.php";
 //include "mande_coneccion.php";
 include "./admin/funciones.php";
 include "./admin/permisos.php";
+
 if (isset($_REQUEST['a'])) {
     $a = $_REQUEST['a'];
 } else {
@@ -234,8 +235,7 @@ if (isset($_REQUEST['tabla'])) {
 
 
 // configBd         
-                        case "configBd":
-                            //include "modelos/configBd.php";
+                        case "configBd":                            
                             include "vista/configBd.php";
                             break;
 
@@ -256,6 +256,10 @@ if (isset($_REQUEST['tabla'])) {
                         case "plugins_lista":
                             include "modelos/plugins_lista.php";
                             include "vista/plugins_lista.php";
+                            break;
+//    maqueta                      
+                        case "maqueta":                            
+                            include "vista/maqueta.php";
                             break;
 
 
