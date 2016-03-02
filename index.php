@@ -57,6 +57,10 @@ if (isset($_REQUEST['tabla'])) {
                     if (isset($tabla)) {
                         include "vista/menu.php";
                     }
+                    
+                    if($p =='maqueta' ){
+                       include "vista/maqueta_izq.php"; 
+                    }
                     ?>                  
 
                 </div>

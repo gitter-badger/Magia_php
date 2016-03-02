@@ -44,8 +44,19 @@ function contenido_controlador($controlador,$nombrePlugin){
           //  $fuente .= ' //include \'header.php\';  '."\n";
            // $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";                        
-            $fuente .= '     $busqueda 		= mysql_real_escape_string($_REQUEST[\'busqueda\']); '."\n";
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/busqueda.php"; '."\n";            
+         //   $fuente .= '     $busqueda 		= mysql_real_escape_string($_REQUEST[\'busqueda\']); '."\n";
+            
+            
+            
+            
+                $i=0;
+                        foreach($resultados as $reg ) {
+                            //$fuente .= ' $'.$reg[0].' = $_REQUEST[\''.$reg[0].'\'];     '."\n"; 
+                            $fuente .= ' $'.$reg[0].' = mysql_real_escape_string($_REQUEST[\''.$reg[0].'\']);     '."\n"; 
+                            $fuente .= ($i < $total_resultados-1)?" ":"";
+                            $i++;
+                        }        
+            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/buscar.php"; '."\n";   
             $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/vista/buscar.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
@@ -100,6 +111,7 @@ function contenido_controlador($controlador,$nombrePlugin){
                         }                
                 
                 $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/editar.php";  '."\n";
+                $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; '."\n";
                 $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/vista/editar.php";  '."\n";
             $fuente .= ' }else{ '."\n";
                      $fuente .= ' $id = mysql_real_escape_string($_REQUEST[\'id\']);      '."\n";
@@ -193,13 +205,14 @@ function contenido_modelos($modelos,$nombrePlugin){
                     // esto es para correjir el error
                     $remplaza_busqueda = '$busqueda';
                     
-                    $fuente .= " $reg[0] like '%$remplaza_busqueda%'    "."\n";
-                    $fuente .= ($i < $total_resultados-1)?" OR ":"";
+                    //$fuente .= " $reg[0] like '%$remplaza_busqueda%'    "."\n";
+                    $fuente .= " $reg[0] like '%$$reg[0]%'    "."\n";
+                    $fuente .= ($i < $total_resultados-1)?" AND ":"";
                 $i++;
             } 
             $fuente .=  ' ORDER BY id DESC    '."\n";
             $fuente .=  ' ",$conexion) or die ("Error:".mysql_error());  '."\n";          
-            $fuente .=  ' $reg = mysql_fetch_array($sql);	  '."\n";          
+            //$fuente .=  ' $reg = mysql_fetch_array($sql);	  '."\n";          
             return $fuente;
             break;   
             
@@ -239,7 +252,7 @@ function contenido_modelos($modelos,$nombrePlugin){
             $fuente .=  ' $sql=mysql_query(" UPDATE '.$nombrePlugin.' SET  '."\n";            
             $i=0;
                 foreach($resultados as $reg ) {       
-                    $fuente .= ' '.$reg[0].' = $'.$reg[0].' ';
+                    $fuente .= ' '.$reg[0].' = $'.$reg[0].'  '."\n";
                     $fuente .= ($i < $total_resultados-1)?" , ":"";
                 $i++;
             }                                    
@@ -252,7 +265,7 @@ function contenido_modelos($modelos,$nombrePlugin){
             $fuente =  '<?php '."\n";
             $fuente .= '$sql=mysql_query("SELECT * FROM '.$nombrePlugin.' ORDER BY id DESC ",$conexion) ';
             $fuente .= 'or die ("Error: en el fichero:" .__FILE__ .\' linea: \'. __LINE__ .\'  \'.mysql_error());	  '."\n";
-            $fuente .= '$reg = mysql_fetch_array($sql);	  '."\n";
+           // $fuente .= '$reg = mysql_fetch_array($sql);	  '."\n";
             
             return $fuente;
             break;
@@ -301,40 +314,72 @@ case 'borrar':
 
             return $fuente;
             break; 
-case 'buscar':                
-                $fuente =  '     <form class="form-horizontal" method="" action=""> '."\n";
-                $fuente .=  '     <input type="hidden" name="accion" value="editar"> '."\n";                
-                $fuente .=  '     <input type="hidden" name="id" value="<?php echo $id; ?>"> '."\n";
-                        $i=0;
-                        foreach($resultados as $reg ) {     
-                            $fuente .=  ' <div class="form-group"> '."\n";
-                            $fuente .=  '     <label for="'.$reg[0].'" class="col-sm-2 control-label">'.ucfirst($reg[0]).'</label> '."\n";
-                            $fuente .=  '     <div class="col-sm-10"> '."\n";
-                            $fuente .=  '       <input type="text" class="form-control" name="'.$reg[0].'" id="'.$reg[0].'" placeholder="'.$reg[0].'" value="<?php echo '.$reg[0].'; ?>"> '."\n";
-                            $fuente .=  '     </div> '."\n";
-                            $fuente .=  '   </div> '."\n";
-                            $i++;
-                        }
 
-                $fuente .=  '   <div class="form-group"> '."\n";
-                $fuente .=  ' <div class="col-sm-offset-2 col-sm-10"> '."\n";
-                $fuente .=  '       <button type="submit" class="btn btn-primary">Edit</button> '."\n";
-                $fuente .=  '     </div> '."\n";
-                $fuente .=  '   </div>     '."\n";
-                $fuente .=  ' </form> '."\n";
+//*************************************************            
+case 'buscar':                
+            
+            $fuente = '<h2>
+                        <?php echo _t("Resultados de su busqueda"); ?>                            
+                        </h2>';        
                 
-                $fuente = "Robinso coello "; 
+            $fuente .= '
+<table class="table table-striped">
+    <thead>
+        <tr> ';
                 
+    $i=0;
+    foreach($resultados as $reg ) {     
+    $fuente .=  ' <th><?php echo _t("'.  ucfirst($reg[0]).'"); ?></th> '."\n";
+    
+    $i++;
+    }      
+    $fuente .=  ' <th><?php echo _t("Accion"); ?></th> '."\n";
+    $fuente .=' </tr>
+    </thead>
+    <tbody>
+    
+ <?php
+   if(permisos_tiene_permiso("ver", "'.$nombrePlugin.'", $u_grupo)){
+                include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_buscar.php";
+                
+            }
+   ?>
+   
+
+        <?php
+        while ($reg = mysql_fetch_array($sql)) {
+            include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; 
+                if(permisos_tiene_permiso("editar", "'.$nombrePlugin.'", $u_grupo)){
+                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
+                   // include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_editar.php";
+                }else{
+                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
+                }            
+        }
+        ?>
+    </tbody>
+     <?php
+   if(permisos_tiene_permiso("crear", "'.$nombrePlugin.'", $u_grupo)){
+                include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_anadir.php";
+                
+            }
+   ?>
+    
+    
+</table> 
+
+
+'; 
+                                    
             return $fuente;
-            break; 
+            break;          
         
 case 'crear':   
-    
-    
-            $fuente    = '<h2><?php echo _t("Nuevo '.$nombrePlugin.'"); ?></h2>';   
-            $fuente   .=  '     <form class="form-horizontal" action="index.php" method="post"> '."\n";
-            $fuente   .=  '     <form class="form-horizontal" action="index.php" method="post"> '."\n";
-            $fuente   .=  '    <input type="hidden" name="accion" value="crear"> '."\n";
+            $fuente    = '<h2><?php echo _t("Nuevo '.$nombrePlugin.'"); ?></h2> '."\n";  
+            $fuente   .=  '<form class="form-horizontal" action="index.php" method="post"> '."\n";            
+            $fuente   .=  '<input type="hidden" name="p" value="'.$nombrePlugin.'"> '."\n";
+            $fuente   .=  '<input type="hidden" name="c" value="crear"> '."\n";
+            $fuente   .=  '<input type="hidden" name="a" value="crear"> '."\n";
             $i=0;
                 foreach($resultados as $reg ) {        
                             $fuente  .=  '     <div class="form-group"> '."\n";
@@ -347,7 +392,7 @@ case 'crear':
             }
             $fuente  .=  ' <div class="form-group"> '."\n";
             $fuente  .=  '     <div class="col-sm-offset-2 col-sm-10"> '."\n";
-            $fuente  .=  '       <button type="submit" class="btn btn-primary">Rgistrar</button> '."\n";
+            $fuente  .=  '       <button type="submit" class="btn btn-primary">Registrar</button> '."\n";
             $fuente  .=  '     </div> '."\n";
             $fuente  .=  '   </div> '."\n";
             $fuente  .=  ' </form> '."\n";
@@ -361,15 +406,17 @@ case 'crear':
 //*************************************************            
 case 'editar':                
                 $fuente  = '<h2><?php echo _t("Editar"); ?></h2>';   
-                $fuente .=  '     <form class="form-horizontal" method="" action=""> '."\n";
-                $fuente .=  '     <input type="hidden" name="accion" value="editar"> '."\n";                
+                $fuente .=  '     <form class="form-horizontal" method="post" action="index.php"> '."\n";                
+                $fuente .=  '     <input type="hidden" name="p" value="'.$nombrePlugin.'"> '."\n";                
+                $fuente .=  '     <input type="hidden" name="c" value="editar"> '."\n";                
+                $fuente .=  '     <input type="hidden" name="a" value="editar"> '."\n";                
                 $fuente .=  '     <input type="hidden" name="id" value="<?php echo $id; ?>"> '."\n";
                         $i=0;
                         foreach($resultados as $reg ) {     
                             $fuente .=  ' <div class="form-group"> '."\n";
                             $fuente .=  '     <label for="'.$reg[0].'" class="col-sm-2 control-label">'.  ucfirst($reg[0]).'</label> '."\n";
                             $fuente .=  '     <div class="col-sm-10"> '."\n";
-                            $fuente .=  '       <input type="text" class="form-control" name="'.$reg[0].'" id="'.$reg[0].'" placeholder="'.  ucfirst($reg[0]).'" value="<?php echo '.$reg[0].'; ?>"> '."\n";
+                            $fuente .=  '       <input type="text" class="form-control" name="'.$reg[0].'" id="'.$reg[0].'" placeholder="'.  ucfirst($reg[0]).'" value="<?php echo $'.$reg[0].'; ?>"> '."\n";
                             $fuente .=  '     </div> '."\n";
                             $fuente .=  '   </div> '."\n\n\n";
                             $i++;
@@ -377,7 +424,7 @@ case 'editar':
 
                 $fuente .=  '   <div class="form-group"> '."\n";
                 $fuente .=  ' <div class="col-sm-offset-2 col-sm-10"> '."\n";
-                $fuente .=  '       <button type="submit" class="btn btn-primary">Edit</button> '."\n";
+                $fuente .=  '       <button type="submit" class="btn btn-primary">Editar</button> '."\n";
                 $fuente .=  '     </div> '."\n";
                 $fuente .=  '   </div>     '."\n";
                 $fuente .=  ' </form> '."\n";            
@@ -420,8 +467,8 @@ case 'index':
         while ($reg = mysql_fetch_array($sql)) {
             include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; 
                 if(permisos_tiene_permiso("editar", "'.$nombrePlugin.'", $u_grupo)){
-                   // include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
-                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_editar.php";
+                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
+                   // include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_editar.php";
                 }else{
                     include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
                 }            
@@ -461,8 +508,9 @@ case 'index':
                     $i++;
                     }      
                $fuente .=' <td>
-                    <a href=\'.$_SERVER[\'PHP_SELF\'].\'?p='.$nombrePlugin.'&c=ver&id=\'.$id.\'">Ver</a> |   
-                    <a href="demo?p='.$nombrePlugin.'&c=editar&id=\'.$id.\'">Editar</a>    
+                    <a href=\'.$_SERVER[\'PHP_SELF\'].\'?p='.$nombrePlugin.'&c=ver&id=\'.$id.\'>Ver</a> |  
+                    <a href=\'.$_SERVER[\'PHP_SELF\'].\'?p='.$nombrePlugin.'&c=editar&id=\'.$id.\'>Editar</a>  
+                      
                 </td></tr>\';  ';   
 
             return $fuente;
@@ -550,10 +598,12 @@ $fuente = '<form method="get" action="index.php" >
 //**********************************************
 case 'ver':                
                 $fuente =  '<h1>Detalles</h1> '."\n";
-                $fuente .= '<h2>
+                /*$fuente .= '<h2>
                             <?php echo _t("Lista de '.$nombrePlugin.'"); ?>     
                             <a type="button" class="btn btn-primary navbar-btn" href="?p='.$nombrePlugin.'&c=crear">Nueva</a>
-                            </h2>';   
+                            </h2>';   */
+                
+                
                 $fuente .=  '     <form class="form-horizontal" method="" action=""> '."\n";
                 $fuente .=  '     <input type="hidden" name="accion" value="editar"> '."\n";                
                 $fuente .=  '     <input type="hidden" name="id" value="<?php echo $id; ?>"> '."\n";
