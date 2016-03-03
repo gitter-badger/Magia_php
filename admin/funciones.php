@@ -252,7 +252,7 @@ function contenido_modelos($modelos,$nombrePlugin){
             $fuente .=  ' $sql=mysql_query(" UPDATE '.$nombrePlugin.' SET  '."\n";            
             $i=0;
                 foreach($resultados as $reg ) {       
-                    $fuente .= ' '.$reg[0].' = $'.$reg[0].'  '."\n";
+                    $fuente .= ' '.$reg[0].' = \'$'.$reg[0].'\'  '."\n";
                     $fuente .= ($i < $total_resultados-1)?" , ":"";
                 $i++;
             }                                    
@@ -726,7 +726,7 @@ function contenido_plugin($pagina,$nombrePlugin){
         case 'funciones.php':
             
             $fuente = '<?php 
-                function '.$nombrePlugin.'_campo($f, $campo){
+                function '.$nombrePlugin.'_campo($id, $campo){
                     global $conexion; 
                 $sql=mysql_query(
                         "SELECT $campo FROM '.$nombrePlugin.' id = \'$id\'   ",$conexion) or die ("Error:".mysql_error());
