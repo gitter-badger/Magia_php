@@ -729,7 +729,7 @@ function contenido_plugin($pagina,$nombrePlugin){
                 function '.$nombrePlugin.'_campo($id, $campo){
                     global $conexion; 
                 $sql=mysql_query(
-                        "SELECT $campo FROM '.$nombrePlugin.' id = \'$id\'   ",$conexion) or die ("Error:".mysql_error());
+                        "SELECT $campo FROM '.$nombrePlugin.' WHERE id = \'$id\'   ",$conexion) or die ("Error:".mysql_error());
                 $reg = mysql_fetch_array($sql);
                 return $reg[$campo];    
                 }'; 
