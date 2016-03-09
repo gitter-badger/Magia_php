@@ -1,5 +1,5 @@
 <?php  
-$path_instalacion_plugins = "../blog/admin"; 
+$path_instalacion_plugins = "../latino_documentacion/www/admin"; 
 $path_plugins = "../admin"; 
 
 $path_plugins_controlador = "path_plugins_controlador"; 

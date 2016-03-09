@@ -261,6 +261,13 @@ if (isset($_REQUEST['tabla'])) {
                             include "modelos/plugins_lista.php";
                             include "vista/plugins_lista.php";
                             break;
+// crear_proyecto         
+                        case "crear_proyecto":
+                            include "modelos/crear_proyecto.php";
+                            include "vista/crear_proyecto.php";
+                            break;
+                        
+                        
 //    maqueta                      
                         case "maqueta":                            
                             include "vista/maqueta.php";
