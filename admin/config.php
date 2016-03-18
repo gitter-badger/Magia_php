@@ -1,6 +1,6 @@
 <?php  
-$path_instalacion_plugins = "../latino_documentacion/www/admin"; 
-$path_plugins = "../admin"; 
+$path_instalacion_plugins = "../veronica/gestion"; 
+$path_plugins = "../gestion"; 
 
 $path_plugins_controlador = "path_plugins_controlador"; 
 $path_plugins_modelos = "path_plugins_modelos"; 

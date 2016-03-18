@@ -1,6 +1,16 @@
-<?php   
+<?php 
 
+function crear_carpeta($path,$nombre_carpeta){
+    mkdir("$path/".$nombre_carpeta);
+    return 0;
+}
 
+function crear_fichero($path,$fichero,$contenido){    
+    $fp = fopen("$path/$fichero", 'w');
+    fwrite($fp, $contenido);
+    fclose($fp);
+    return 0;
+}
 
 
 
@@ -549,20 +559,7 @@ $fuente .= '
   </div>
    ';         
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+                   
     }
     
     $i++;
@@ -852,14 +849,6 @@ while ($reg = mysql_fetch_array($sql)) {
 
 '; 
             
-            
-            
-            
-            
-            
-            
-            
-            
             return $fuente;
             break;
         case 'readme.txt':
@@ -897,12 +886,6 @@ while ($reg = mysql_fetch_array($sql)) {
 
 
 function contenido_admin($pagina){
-   // global $path_plugins, $dbh; 
-    //$resultados = resultados($nombrePlugin);
-   // include "./modelos/v_crea_plug.php";
-   // $total_resultados = count($resultados);
-
-
     switch ($pagina) {
         case 'bd.php':            
             $fuente = '<?php  
@@ -912,14 +895,12 @@ function contenido_admin($pagina){
                         $clave = "";';                        
             return $fuente;
             break;
-        
         case 'conec.php':
             $fuente = '<?php	
 $dbh = new PDO("mysql:host=$servidor; dbname=$bdatos",   $usuario, $clave);
 '; 
             return $fuente;
             break;
-        
         case 'coneccion.php':
             $fuente = '<?php
 $conexion = mysql_connect("$servidor", "$usuario", "$clave") or die("Problemas en la conexion");
@@ -928,8 +909,6 @@ mysql_select_db("$bdatos", $conexion) or die("Problemas conexion en local");
 '; 
             return $fuente;
             break;
-        
-        
         case 'funciones.php':
             $fuente = '<?php 
 
@@ -950,82 +929,6 @@ function incluir_funciones(){
         
     }
 }
-
-function _traducir($f){
-    echo $f;
-}
-
-function _t($frase){
-
-      
-      if(traduccion_verifica_si_existe($frase)){
-          //echo "existe palabra - "; 
-      } else {
-         // echo "no existe p"; 
-          traduccion_registra_frase($frase);
-      }
-      
-      
-      if(traduccion_verifica_si_existe_traduccion($frase, $idioma)){
-         // echo "existe t - "; 
-      } else {
-         // echo "no existe t"; 
-          traduccion_registra_traduccion($frase, $idioma, $traduccion);
-      }
-    
-      return $frase;
-}
-
-
-function traduccion_verifica_si_existe($frase) {
-    global $conexion;
-   $sql=mysql_query(""
-           . "SELECT traduccion "
-           . "FROM idiomas "
-           . "WHERE frase = \'$frase\'  ",$conexion) or die ("Error:".mysql_error());    
-    $total = mysql_num_rows($sql);
-    if($total > 0){
-        return TRUE;
-    }else{
-        return FALSE;
-    } 
-    
-}
-
-function traduccion_verifica_si_existe_traduccion($frase, $idioma) {
-    global $conexion;
-   $sql=mysql_query(""
-           . "SELECT traduccion "
-           . "FROM idiomas "
-           . "WHERE frase = \'$frase\' AND idioma = \'$idioma\'  ",$conexion) or die ("Error:".mysql_error());    
-    $total = mysql_num_rows($sql);
-    if($total > 0){
-        return TRUE;
-    }else{
-        return FALSE;
-    } 
-    
-}
-
-/**
- * registra la frase en la BDD de idiomas
- * @global type $conexion
- * @param type $frase
- */
-function traduccion_registra_frase($frase) {
-    global $conexion;
-   $sql=mysql_query("INSERT INTO idiomas (frase) values(\'$frase\')   ",$conexion) or die ("Error:".mysql_error());        
-}
-
-function traduccion_registra_traduccion($frase, $idioma, $traduccion) {
-    global $conexion;
-   $sql=mysql_query("UPDATE idiomas SET idioma=\'$idioma\', traduccion=\'$traduccion\' WHERE frase = \'$frase\' ",$conexion) or die ("Error:".mysql_error());        
-}
-
-
-
-
-
 function listar_directorios_ruta($ruta="./"){ 
    // abrir un directorio y listarlo recursivo 
    if (is_dir($ruta)) { 
@@ -1086,9 +989,7 @@ function estatus($estatus) {
 '; 
             return $fuente;
             break;
-        
-        
-        case 'index':
+        case 'index.php':
             $fuente = '<?php 
 $u_grupo = "admin";
 include "bd.php";
@@ -1165,7 +1066,6 @@ incluir_funciones();
 '; 
             return $fuente;
             break;
-        
         case 'modelo.css':
             $fuente = 'body {
   padding-top: 50px;
@@ -1176,21 +1076,396 @@ incluir_funciones();
 }'; 
             return $fuente;
             break;
-        
-        
         case 'permisos.php':
+        case 'traductor.php':
             $fuente = '<?php 
-function permisos_tiene_permiso($pagina,$accion,$grupo){
-    return TRUE;
+                function _traducir($f){
+    echo $f;
+}
+function _t($frase){
+
+      
+      if(traduccion_verifica_si_existe($frase)){
+          //echo "existe palabra - "; 
+      } else {
+         // echo "no existe p"; 
+          traduccion_registra_frase($frase);
+      }
+      
+      
+      if(traduccion_verifica_si_existe_traduccion($frase, $idioma)){
+         // echo "existe t - "; 
+      } else {
+         // echo "no existe t"; 
+          traduccion_registra_traduccion($frase, $idioma, $traduccion);
+      }
+    
+      return $frase;
+}
+function traduccion_verifica_si_existe($frase) {
+    global $conexion;
+   $sql=mysql_query("SELECT traduccion FROM idiomas WHERE frase = \'$frase\'  ",$conexion) 
+       or die ("Error:".mysql_error());    
+    $total = mysql_num_rows($sql);
+    if($total > 0){
+        return TRUE;
+    }else{
+        return FALSE;
+    } 
+    
+}
+function traduccion_verifica_si_existe_traduccion($frase, $idioma) {
+    global $conexion;
+   $sql=mysql_query(""
+           . "SELECT traduccion "
+           . "FROM idiomas "
+           . "WHERE frase = \'$frase\' AND idioma = \'$idioma\'  ",$conexion) or die ("Error:".mysql_error());    
+    $total = mysql_num_rows($sql);
+    if($total > 0){
+        return TRUE;
+    }else{
+        return FALSE;
+    } 
+    
+}
+function traduccion_registra_frase($frase) {
+    global $conexion;
+   $sql=mysql_query("INSERT INTO idiomas (frase) values(\'$frase\')   ",$conexion) 
+   or die ("Error:".mysql_error());        
+}
+function traduccion_registra_traduccion($frase, $idioma, $traduccion) {
+    global $conexion;
+   $sql=mysql_query("UPDATE idiomas SET idioma=\'$idioma\', traduccion=\'$traduccion\' WHERE frase = \'$frase\' ",$conexion) 
+   or die ("Error:".mysql_error());        
 }'; 
             return $fuente;
-            break;
+            break; 
         
-        default :
-            return;
-            break;
+        
+        
+        
     }
 }
+
+function contenido_config($pagina){
+    switch ($pagina) {
+        case 'footer.php':            
+            $fuente = '<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+    </div><!-- /.container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../includes/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  </body>
+</html>
+';                        
+            return $fuente;
+            break;
+        case 'funciones.php':
+            $fuente = '// funciones'; 
+            return $fuente;
+            break;
+        case 'header.php':
+            $fuente = 'header contenido'; 
+            return $fuente;
+            break;
+      
+        case 'index.php':
+            $fuente = 'index contenido'; 
+            return $fuente;
+            break;
+      
+      
+        case 'menu.php':
+            $fuente = 'menu contanido'; 
+            return $fuente;
+            break;
+      
+      
+        case 'modelo.css':
+            $fuente = 'css'; 
+            return $fuente;
+            break;
+      
+        case 'z_verificar.php':
+            $fuente = 'verif'; 
+            return $fuente;
+            break;
+      
+    }
+}
+
+function contenido_gestion($pagina){
+    switch ($pagina) {
+        case 'estilo.css':            
+            $fuente = '/*-------------------------
+    Simple reset
+--------------------------*/
+
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+/*-------------------------
+    General Styles
+--------------------------*/
+
+/*----------------------------
+    The file upload form
+-----------------------------*/
+#upload{
+    font-family:\'PT Sans Narrow\', sans-serif;
+    background-color:#373a3d;
+
+    background-image:-webkit-linear-gradient(top, #373a3d, #313437);
+    background-image:-moz-linear-gradient(top, #373a3d, #313437);
+    background-image:linear-gradient(top, #373a3d, #313437);
+
+    width:250px;
+    padding:30px;
+    border-radius:3px;
+
+    margin:20px auto 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: auto; 
+}
+
+#drop{
+    background-color: #2E3134;
+    padding: 40px 50px;
+    margin-bottom: 30px;
+    border: 20px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    border-image: url(\'../img/border-image.png\') 25 repeat;
+    text-align: center;
+    text-transform: uppercase;
+
+    font-size:16px;
+    font-weight:bold;
+    color:#7f858a;
+}
+
+
+
+
+#drop input{
+    display:none;
+}
+
+#upload ul{
+    list-style:none;
+    margin:0 -30px;
+    border-top:1px solid #2b2e31;
+    border-bottom:1px solid #3d4043;
+}
+
+#upload ul li{
+
+    background-color:#333639;
+
+    background-image:-webkit-linear-gradient(top, #333639, #303335);
+    background-image:-moz-linear-gradient(top, #333639, #303335);
+    background-image:linear-gradient(top, #333639, #303335);
+
+    border-top:1px solid #3d4043;
+    border-bottom:1px solid #2b2e31;
+    padding:15px;
+    height: 52px;
+
+    position: relative;
+}
+
+#upload ul li input{
+    display: none;
+}
+
+#upload ul li p{
+    width: 144px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #EEE;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+}
+
+#upload ul li i{
+    font-weight: normal;
+    font-style:normal;
+    color:#7f7f7f;
+    display:block;
+}
+
+#upload ul li canvas{
+    top: 15px;
+    left: 32px;
+    position: absolute;
+}
+
+#upload ul li span{
+    width: 15px;
+    height: 12px;
+    background: url(\'../img/icons.png\') no-repeat;
+    position: absolute;
+    top: 34px;
+    right: 33px;
+    cursor:pointer;
+}
+
+#upload ul li.working span{
+    height: 16px;
+    background-position: 0 -12px;
+}
+
+#upload ul li.error p{
+    color:red;
+}
+';                        
+            return $fuente;
+            break;
+        case 'index.php':
+            $fuente = '<?php
+session_start("inmoweb_username") ;
+$u_grupo = "root";
+include "z_verificar.php";
+include "../admin/bd.php";
+include "../admin/configuracion.php";
+include "../admin/coneccion.php";
+include "../admin/conec.php";
+include "../admin/funciones.php";
+include "../admin/permisos.php";
+include "../admin/traductor.php";
+incluir_funciones();
+$aqui_seccion = "";
+$aqui_pagina = "";
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title><?php echo "$config_nombre_web"; ?></title>
+
+        <link rel="stylesheet" href="../includes/js/jquery-ui-1.10.3/themes/base/jquery.ui.all.css">
+        <link rel="stylesheet" href="../includes/js/jquery-ui-1.10.3/demos.css">
+        <script src="../includes/js/jquery-ui-1.10.3/jquery-1.9.1.js"></script>
+        <script src="../includes/js/jquery-ui-1.10.3/ui/jquery.ui.core.js"></script>
+        <script src="../includes/js/jquery-ui-1.10.3/ui/jquery.ui.widget.js"></script>
+        <script src="../includes/js/jquery-ui-1.10.3/ui/jquery.ui.datepicker.js"></script>
+        <script src="../includes/js/jquery-ui-1.10.3/ui/jquery.ui.tabs.js"></script>
+
+        <link href="../includes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../modelos/font-awesome/css/font-awesome.min.css">
+        <link href="home/vista/gestion.css" rel="stylesheet">
+        <script src="../includes/bootstrap/js/ie-emulation-modes-warning.js"></script>
+        <link href="estilo.css" rel="stylesheet" />
+
+
+    </head>
+
+    <body>
+
+<?php
+include "home/vista/nav_sup.php";
+?>
+
+        <div class="container-fluid"> <!-- 1 -->
+            <div class="row">	<!-- 2 -->
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> <!-- 3 --> 
+
+<?php
+$p = (isset($_REQUEST[\'p\']))? $_REQUEST[\'p\']  : "home" ;
+$c = (isset($_REQUEST[\'c\']))? $_REQUEST[\'c\']  : "index" ;
+
+
+
+switch ($p) {
+    case \'config\':
+        include "config/vista/sidebar.php";
+        break;
+
+    default:
+        include "home/vista/sidebar.php";
+        break;
+}
+
+
+include \'./\'.$p.\'/controlador/\'.$c.\'.php\';
+
+?>
+
+                </div>	  <!-- /3 --> 
+            </div>  <!-- /2 -->
+        </div>	<!-- /1 -->
+
+<?php
+include "home/vista/footer.php";
+?>
+
+        <!-- JavaScript Includes -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="./img2/assets/js/jquery.knob.js"></script>
+
+        <!-- jQuery File Upload Dependencies -->
+        <script src="./img2/assets/js/jquery.ui.widget.js"></script>
+        <script src="./img2/assets/js/jquery.iframe-transport.js"></script>
+        <script src="./img2/assets/js/jquery.fileupload.js"></script>
+
+        <!-- Our main JS file -->
+        <script src="./img2/assets/js/script.js"></script>
+
+
+    </body>
+</html>
+
+'; 
+            return $fuente;
+            break;
+        case 'z_index.php':
+            $fuente = 'z-index contenido'; 
+            return $fuente;
+            break;
+      
+        case 'z_login.php':
+            $fuente = 'z_login contenido'; 
+            return $fuente;
+            break;
+      
+      
+        case 'z_logount.php':
+            $fuente = 'logunt contanido'; 
+            return $fuente;
+            break;
+      
+      
+        case 'z_verificar.css':
+            $fuente = 'z-verfi'; 
+            return $fuente;
+            break;
+      
+        case 'z_login.php':
+            $fuente = 'zz_login'; 
+            return $fuente;
+            break;
+      
+    }
+}
+
+
 
 
 /**
@@ -1305,83 +1580,64 @@ case 'raiz':
 
 
 function magia_crear_ficheros_en_proyecto($nombreProyecto){
-
-    $camino_instalacion = "./blog/"; 
-
-
-     $c = ['bd.php','conec.php','coneccion.php','funciones.php','index.php','modelo.css','permisos.php'] ;
+    global $path_instalacion_plugins; 
+    
+    // el index de la parte publica del proyecto
+    crear_fichero($path_instalacion_plugins, 'index.php', 'inicio');
+    
+    // primero creo las carpetas
+    $carpetas = ['admin','config','gestion','imagenes','includes'];
+    
+    
+    $i=0; 
+    while ($i < count($carpetas)){
+        crear_carpeta($path_instalacion_plugins, $carpetas[$i]);
         
-     
+        if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
+            // creamos los ficheros denttro de cada carpeta del proyecto
+            switch ($carpetas[$i]) {
+                case 'admin':
+                    $ficheros = ['bd.php','conec.php','coneccion.php','configuracion.php','funciones.php','index.php','modelo.css','permisos.php','traductor.php'];
+                    $j = 0; 
+                    while ($j < count($ficheros)) {
+                        crear_fichero("$path_instalacion_plugins/admin", $ficheros[$j], contenido_admin($ficheros[$j]));
+                        $j++; 
+                    }
+                    break;
+                    
+                case 'config':
+                    $ficheros = ['footer.php','funciones.php','header.php','index.php','menu.php','modelo.css','z_verificar.php'];
+                    $j = 0; 
+                    while ($j < count($ficheros)) {
+                        crear_fichero("$path_instalacion_plugins/config", $ficheros[$j], contenido_config($ficheros[$j]));
+                        $j++; 
+                    }
+                    break;
+                    
+                case 'gestion':
+                    $ficheros = ['estilo.css','index.php','z_index.php','z_login.php','z_logout.php','z_verificar.php','zz_login.php'];
+                    $j = 0; 
+                    while ($j < count($ficheros)) {
+                        crear_fichero("$path_instalacion_plugins/gestion",$ficheros[$j], contenido_gestion($ficheros[$j]));
+                        $j++; 
+                    }
+                    break;
 
-     
-       $total = count($c);
-       $i=1;
-       
-       mkdir("$camino_instalacion/".$c[$i]);
-       
-       
-        while ($i<$total) {        
-           $destino = $path_instalacion_plugins.'/'.$c[$i].''; 
-
-           $contenido = contenido_admin($c[$i]); 
-           $fp = fopen($destino, 'w');
-           fwrite($fp, $contenido);        
-           fclose($fp);
-           echo "$c[$i] se ha llenado el contenido <br>"; 
-           $i++;  
+            }
         }
-
-
+        
+        $i++;
+    }
     
-    
-
-
     
 } 
 
 
 
-/**
- * Esta funcion sirbe para traducir las frases del sitio web
- * @param type $palabra
- * @return type
- */
+
+
 function _t($palabra){
     return $palabra;
 }
 
-
-    
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+?>
