@@ -5,6 +5,17 @@ function crear_carpeta($path,$nombre_carpeta){
     return 0;
 }
 
+function crear_carpetas($path,$carpetas){
+    $i=0; 
+    while ($i < count($carpetas)){
+        crear_carpeta($path, $carpetas[$i]);
+        $i++;
+    }
+    
+    
+    
+}
+
 function crear_fichero($path,$fichero,$contenido){    
     $fp = fopen("$path/$fichero", 'w');
     fwrite($fp, $contenido);
@@ -886,13 +897,14 @@ while ($reg = mysql_fetch_array($sql)) {
 
 
 function contenido_admin($pagina){
+    global $servidor,  $bdatos, $usuario, $clave ; 
     switch ($pagina) {
         case 'bd.php':            
             $fuente = '<?php  
-                        $servidor = "localhost"; 
-                        $bdatos = "blog"; 
-                        $usuario = "root"; 
-                        $clave = "";';                        
+                        $servidor = "'.$servidor.'"; 
+                        $bdatos = "'.$bdatos.'"; 
+                        $usuario = "'.$usuario.'"; 
+                        $clave = "'.$clave.'";';                        
             return $fuente;
             break;
         case 'conec.php':
@@ -907,6 +919,12 @@ $conexion = mysql_connect("$servidor", "$usuario", "$clave") or die("Problemas e
 mysql_select_db("$bdatos", $conexion) or die("Problemas conexion en local");
 
 '; 
+            return $fuente;
+            break;        
+        case 'configuracion.php':
+            $fuente = '<?php 
+$config_nombre_web          = "Mi sitio web";
+$config_idioma_por_defecto  = "es"; '; 
             return $fuente;
             break;
         case 'funciones.php':
@@ -1077,30 +1095,40 @@ incluir_funciones();
             return $fuente;
             break;
         case 'permisos.php':
-        case 'traductor.php':
             $fuente = '<?php 
-                function _traducir($f){
+function permisos_tiene_permiso($accion, $pagina, $grupo){
+    return TRUE;
+}'; 
+            return $fuente;
+            break;            
+        case 'traductor.php':
+            $fuente = '<?php
+
+function _traducir($f) {
     echo $f;
 }
-function _t($frase){
 
-      
-      if(traduccion_verifica_si_existe($frase)){
-          //echo "existe palabra - "; 
-      } else {
-         // echo "no existe p"; 
-          traduccion_registra_frase($frase);
-      }
-      
-      
-      if(traduccion_verifica_si_existe_traduccion($frase, $idioma)){
-         // echo "existe t - "; 
-      } else {
-         // echo "no existe t"; 
-          traduccion_registra_traduccion($frase, $idioma, $traduccion);
-      }
+function _t($frase, $idioma="") {
+global $config_idioma_por_defecto; 
+
+    // si no ponemos el idioma al que deseamos traducir, 
+    // para a ser el idioma por defecto configurado en ./admin/configuracion.php
+    $idioma = (!$idioma)?  : $config_idioma_por_defecto;
     
-      return $frase;
+    // verificamos si existela frase en nuestra Base de datos, 
+    // sino existe, registramos la frase en la Base de datos
+    if (!traduccion_verifica_si_existe($frase))  {traduccion_registra_frase($frase);}
+
+    /*
+     * esto registra la traduccion de la frase
+    if (traduccion_verifica_si_existe_traduccion($frase, $idioma)) {
+        // echo "existe t - "; 
+    } else {
+        // echo "no existe t"; 
+        traduccion_registra_traduccion($frase, $idioma, $traduccion);
+    }
+*/
+    echo $frase;
 }
 function traduccion_verifica_si_existe($frase) {
     global $conexion;
@@ -1185,7 +1213,7 @@ function contenido_config($pagina){
       
       
         case 'modelo.css':
-            $fuente = 'css'; 
+            $fuente = '--'; 
             return $fuente;
             break;
       
@@ -1579,6 +1607,8 @@ case 'raiz':
 
 
 
+
+
 function magia_crear_ficheros_en_proyecto($nombreProyecto){
     global $path_instalacion_plugins; 
     
@@ -1591,7 +1621,7 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
     
     $i=0; 
     while ($i < count($carpetas)){
-        crear_carpeta($path_instalacion_plugins, $carpetas[$i]);
+        crear_carpetas($path_instalacion_plugins, $carpetas);
         
         if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
             // creamos los ficheros denttro de cada carpeta del proyecto
@@ -1615,7 +1645,12 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                     break;
                     
                 case 'gestion':
-                    $ficheros = ['estilo.css','index.php','z_index.php','z_login.php','z_logout.php','z_verificar.php','zz_login.php'];
+                    
+                    
+                    
+                    
+                    
+                $ficheros = ['estilo.css','index.php','z_index.php','z_login.php','z_logout.php','z_verificar.php','zz_login.php'];
                     $j = 0; 
                     while ($j < count($ficheros)) {
                         crear_fichero("$path_instalacion_plugins/gestion",$ficheros[$j], contenido_gestion($ficheros[$j]));
@@ -1631,6 +1666,43 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
     
     
 } 
+
+
+
+
+function magia_crear_ficheros_home($donde){
+    global $path_instalacion_plugins; 
+
+    $carpetas = ['home'];
+    
+    $i=0; 
+    while ($i < count($carpetas)){
+        
+        crear_carpeta($path_instalacion_plugins, $carpetas[$i]);
+        
+        if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
+            // creamos los ficheros denttro de cada carpeta del proyecto
+            switch ($carpetas[$i]) {
+                case 'home':
+                    $ficheros = ['funciones.php'];
+                    $j = 0; 
+                    while ($j < count($ficheros)) {
+                      crear_fichero("$path_instalacion_plugins/admin", $ficheros[$j], contenido_home($ficheros[$j]));
+                        $j++; 
+                    }
+                    break;
+
+
+            }
+        }
+        
+        $i++;
+    }
+    
+    
+} 
+
+
 
 
 

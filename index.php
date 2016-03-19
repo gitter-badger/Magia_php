@@ -53,6 +53,8 @@ if (isset($_REQUEST['tabla'])) {
 
             <div class="row">
                 <div class="col-lg-3">
+                    
+                    
                     <?php
                     if (isset($tabla)) {
                         include "vista/menu.php";
@@ -61,6 +63,12 @@ if (isset($_REQUEST['tabla'])) {
                     if($p =='maqueta' ){
                        include "vista/maqueta_izq.php"; 
                     }
+                    
+                     if($p=='index'){
+                       include "vista/izq.php"; 
+                    }
+                    
+                    
                     ?>                  
 
                 </div>

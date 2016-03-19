@@ -1,1 +1,1 @@
-<?php  $servidor = "localhost"; $bdatos = "latino_doc"; $usuario = "root"; $clave = "";
+<?php  $servidor = "localhost"; $bdatos = "veronica"; $usuario = "root"; $clave = "";
