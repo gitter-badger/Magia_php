@@ -21,8 +21,9 @@
             <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> <?php _t("Inicio"); ?></a></li>
             <li><a href="index.php?p=config&c=index"><span class="glyphicon glyphicon-wrench"></span> <?php _t("Parametros"); ?></a></li>
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> 
-            <?php 
-               echo personal($u_id_personal);                               
+            Robinson 
+                <?php 
+              
                echo ' ['.$u_grupo. '] ';
             ?> </a></li>
             
@@ -32,7 +33,7 @@
             }
             ?>
             <li><a href="?p=ayuda"><span class="glyphicon glyphicon-lamp"></span> <?php _t("Ayuda"); ?></a></li>
-            <li><a href="z_logout.php"><span class="glyphicon glyphicon-off"></span></a></li>
+            <li><a href="z_logout.php"><span class="glyphicon glyphicon-off"></span> <?php _t("Desconectarse"); ?></a></li>
           </ul>
         </div>
       </div>
