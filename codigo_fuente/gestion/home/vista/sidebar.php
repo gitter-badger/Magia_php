@@ -5,9 +5,11 @@
  
         <ul class="nav nav-sidebar">
             
-
+            <?php 
+            magia_menu($p);
+            ?>
             
-            
+<!--             
             <?php if (permisos_tiene_permiso("ver", "bienes", $u_grupo) == true) { ?>              
 
                 <li <?php if ($p == "bienes") { echo " class=\"active\" ";} ?> >
@@ -119,7 +121,7 @@
                  </a>
             </li>              
             
-
+-->
             
             
 <?php 

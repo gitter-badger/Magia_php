@@ -1671,7 +1671,7 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
      crear_carpetas($path_instalacion_plugins, $carpetas);
      
     // copiamos el home en gestion y en config
-    copiar_carpeta("./codigo_fuente/config", "$path_instalacion_plugins/gestion");
+    copiar_carpeta("./codigo_fuente/gestion", "$path_instalacion_plugins/gestion");
     copiar_carpeta("./codigo_fuente/config", "$path_instalacion_plugins/config");
     copiar_carpeta("./codigo_fuente/includes", "$path_instalacion_plugins/includes");
     
