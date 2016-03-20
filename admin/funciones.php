@@ -1213,7 +1213,7 @@ function contenido_config($pagina){
       
       
         case 'modelo.css':
-            $fuente = '--'; 
+            $fuente = ''; 
             return $fuente;
             break;
       
