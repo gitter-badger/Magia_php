@@ -48,10 +48,10 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
            // $fuente .= ' //include \'header.php\';  '."\n";
-          //  $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+          //  $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";            
             $fuente .= ' $id 		= mysql_real_escape_string($_REQUEST[\'id\']); '."\n";
-            $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/borrar.php"; '."\n";
+            $fuente .= ' include "./'.$nombrePlugin.'/modelos/borrar.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";
@@ -63,7 +63,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
           //  $fuente .= ' //include \'header.php\';  '."\n";
-           // $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+           // $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";                        
          //   $fuente .= '     $busqueda 		= mysql_real_escape_string($_REQUEST[\'busqueda\']); '."\n";
             
@@ -79,8 +79,8 @@ function contenido_controlador($controlador,$nombrePlugin){
                     }
                             $i++;
                         }        
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/buscar.php"; '."\n";   
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/vista/buscar.php"; '."\n";
+            $fuente .= '     include "./'.$nombrePlugin.'/modelos/buscar.php"; '."\n";   
+            $fuente .= '     include "./'.$nombrePlugin.'/vista/buscar.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";    
@@ -93,7 +93,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
            // $fuente .= ' //include \'header.php\';  '."\n";
-           // $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+           // $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'crear\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";                                                
             $fuente .= ' if(isset($_REQUEST[\'a\'])==\'crear\'){ '."\n";        
                     $i=0;
@@ -106,10 +106,10 @@ function contenido_controlador($controlador,$nombrePlugin){
                     }
                             $i++;
                         }        
-            $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/crear.php";  '."\n";
-            $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/vista/crear.php";  '."\n";
+            $fuente .= ' include "./'.$nombrePlugin.'/modelos/crear.php";  '."\n";
+            $fuente .= ' include "./'.$nombrePlugin.'/vista/crear.php";  '."\n";
             $fuente .= ' }else{ '."\n";
-            $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/vista/crear.php";  '."\n";
+            $fuente .= ' include "./'.$nombrePlugin.'/vista/crear.php";  '."\n";
             $fuente .= ' }          '."\n";   
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'crear\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
@@ -123,7 +123,7 @@ function contenido_controlador($controlador,$nombrePlugin){
         $fuente = ' <?php '."\n";
         $fuente .= ' $pagina = "'.$nombrePlugin.'"; '."\n";
        // $fuente .= ' //include \'header.php\'; '."\n";
-       // $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+       // $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
         $fuente .= ' if (permisos_tiene_permiso(\'editar\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
             $fuente .= ' if(isset($_REQUEST[\'a\'])==\'editar\'){ '."\n";
                     $i=0;                    
@@ -136,14 +136,14 @@ function contenido_controlador($controlador,$nombrePlugin){
                             $i++;
                         }                
                 
-                $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/editar.php";  '."\n";
-                $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-                $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/vista/editar.php";  '."\n";
+                $fuente .= ' include "./'.$nombrePlugin.'/modelos/editar.php";  '."\n";
+                $fuente .= ' include "./'.$nombrePlugin.'/reg/reg.php"; '."\n";
+                $fuente .= ' include "./'.$nombrePlugin.'/vista/editar.php";  '."\n";
             $fuente .= ' }else{ '."\n";
                      $fuente .= ' $id = mysql_real_escape_string($_REQUEST[\'id\']);      '."\n";
-                    $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/ver.php"; '."\n";
-                    $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-                    $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/vista/editar.php"; '."\n";
+                    $fuente .= ' include "./'.$nombrePlugin.'/modelos/ver.php"; '."\n";
+                    $fuente .= ' include "./'.$nombrePlugin.'/reg/reg.php"; '."\n";
+                    $fuente .= ' include "./'.$nombrePlugin.'/vista/editar.php"; '."\n";
             $fuente .= ' }  '."\n";
        
             $fuente .= ' } else { '."\n";
@@ -159,10 +159,10 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
         //    $fuente .= ' //include \'header.php\';  '."\n";
-        //    $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+        //    $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";            
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/index.php"; '."\n";
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/vista/index.php"; '."\n";
+            $fuente .= '     include "./'.$nombrePlugin.'/modelos/index.php"; '."\n";
+            $fuente .= '     include "./'.$nombrePlugin.'/vista/index.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";
@@ -172,14 +172,14 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
        //     $fuente .= ' include \'header.php\';  '."\n";
-       //     $fuente .= ' include "'.$path_plugins.'/'.$nombrePlugin.'/funciones.php"; '."\n";
+       //     $fuente .= ' include "./'.$nombrePlugin.'/funciones.php"; '."\n";
             $fuente .= ' if (permisos_tiene_permiso(\'ver\', \''.$nombrePlugin.'\', $u_grupo)) { '."\n";
             
             $fuente .= '     $id 		= mysql_real_escape_string($_REQUEST[\'id\']);   '."\n";
             
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/modelos/ver.php"; '."\n";            
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; '."\n";
-            $fuente .= '     include "'.$path_plugins.'/'.$nombrePlugin.'/vista/ver.php"; '."\n";
+            $fuente .= '     include "./'.$nombrePlugin.'/modelos/ver.php"; '."\n";            
+            $fuente .= '     include "./'.$nombrePlugin.'/reg/reg.php"; '."\n";
+            $fuente .= '     include "./'.$nombrePlugin.'/vista/ver.php"; '."\n";
             $fuente .= ' } else { '."\n";
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";
@@ -382,7 +382,7 @@ case 'buscar':
     
  <?php
    if(permisos_tiene_permiso("ver", "'.$nombrePlugin.'", $u_grupo)){
-             //   include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_buscar.php";
+             //   include "./'.$nombrePlugin.'/vista/tr_buscar.php";
                 
             }
    ?>
@@ -390,19 +390,19 @@ case 'buscar':
 
         <?php
         while ($reg = mysql_fetch_array($sql)) {
-            include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; 
+            include "./'.$nombrePlugin.'/reg/reg.php"; 
                 if(permisos_tiene_permiso("editar", "'.$nombrePlugin.'", $u_grupo)){
-                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
-                   // include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_editar.php";
+                    include "./'.$nombrePlugin.'/vista/tr.php";
+                   // include "./'.$nombrePlugin.'/vista/tr_editar.php";
                 }else{
-                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
+                    include "./'.$nombrePlugin.'/vista/tr.php";
                 }            
         }
         ?>
     </tbody>
      <?php
    if(permisos_tiene_permiso("crear", "'.$nombrePlugin.'", $u_grupo)){
-             //   include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_anadir.php";
+             //   include "./'.$nombrePlugin.'/vista/tr_anadir.php";
                 
             }
    ?>
@@ -506,7 +506,7 @@ case 'index':
     
  <?php
    if(permisos_tiene_permiso("ver", "'.$nombrePlugin.'", $u_grupo)){
-             //   include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_buscar.php";
+             //   include "./'.$nombrePlugin.'/vista/tr_buscar.php";
                 
             }
    ?>
@@ -514,19 +514,19 @@ case 'index':
 
         <?php
         while ($reg = mysql_fetch_array($sql)) {
-            include "'.$path_plugins.'/'.$nombrePlugin.'/reg/reg.php"; 
+            include "./'.$nombrePlugin.'/reg/reg.php"; 
                 if(permisos_tiene_permiso("editar", "'.$nombrePlugin.'", $u_grupo)){
-                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
-                   // include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_editar.php";
+                    include "./'.$nombrePlugin.'/vista/tr.php";
+                   // include "./'.$nombrePlugin.'/vista/tr_editar.php";
                 }else{
-                    include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr.php";
+                    include "./'.$nombrePlugin.'/vista/tr.php";
                 }            
         }
         ?>
     </tbody>
      <?php
    if(permisos_tiene_permiso("crear", "'.$nombrePlugin.'", $u_grupo)){
-             //   include "'.$path_plugins.'/'.$nombrePlugin.'/vista/tr_anadir.php";
+             //   include "./'.$nombrePlugin.'/vista/tr_anadir.php";
                 
             }
    ?>
