@@ -1,24 +1,28 @@
+<ul>
 <?php 
 
 if (isset($_GET['nombrePlugin'])) {
     $nombrePlugin = trim(strtolower($_GET['nombrePlugin']));
-} else {
+    echo "<li>ok: Nombre de plugin: $nombrePlugin</li>"; 
+} else {    
     $nombrePlugin = false;
+    die("Olvido el nombre del plugin");
 }
 
 if(file_exists($path_instalacion_plugins.'/'.$nombrePlugin)){
-   echo "El plugin <b>$path_instalacion_plugins/$nombrePlugin</b>  existe" ; 
+   echo "El plugin <b>$path_instalacion_plugins/$nombrePlugin</b>  YA existe" ; 
     $existe = true;
 }
 else 
 {
+    echo "<li>ok: El plugin: $nombrePlugin no existe, puede continuar</li>";
     echo "El fichero $path_instalacion_plugins/$nombrePlugin no existe" ; 
     $existe = false;
 }
 
 if($existe == FALSE){
     // creo el folder
-    echo "ok"; 
+    
 
 // verificar que solo tenga letras de a-z en minusculas
 // talvez guion bajo, medio, 
@@ -55,3 +59,6 @@ if ($nombrePlugin) {
 
 }
 
+?>
+</ul>
+<hr>

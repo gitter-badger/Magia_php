@@ -11,9 +11,6 @@ function crear_carpetas($path,$carpetas){
         crear_carpeta($path, $carpetas[$i]);
         $i++;
     }
-    
-    
-    
 }
 
 function crear_fichero($path,$fichero,$contenido){    
@@ -22,6 +19,55 @@ function crear_fichero($path,$fichero,$contenido){
     fclose($fp);
     return 0;
 }
+
+
+
+
+
+
+function copiar_carpeta( $origen, $destino ) {
+    if ( is_dir( $origen ) ) {
+        @mkdir( $destino );
+        $d = dir( $origen );
+        while ( FALSE !== ( $entry = $d->read() ) ) {
+            if ( $entry == '.' || $entry == '..' ) {
+                continue;
+            }
+            $Entry = $origen . '/' . $entry; 
+            if ( is_dir( $Entry ) ) {
+                copiar_carpeta( $Entry, $destino . '/' . $entry );
+                continue;
+            }
+            copy( $Entry, $destino . '/' . $entry );
+        }
+ 
+        $d->close();
+    }else {
+        copy( $origen, $destino );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,10 +86,7 @@ function contenido_controlador($controlador,$nombrePlugin){
     $total_resultados = count($resultados);
 
     switch ($controlador) {  
-//*************************************************     
-        /**
-         * caso de ser la pagina borrar.php
-         */
+
         case 'borrar':
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -58,7 +101,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             
             return $fuente;
             break;
-//*************************************************        
+      
         case 'buscar':
             $fuente =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -88,7 +131,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             
             return $fuente;
             break;
-//*************************************************        
+      
         case 'crear':
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -118,7 +161,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             
             return $fuente;
             break;
-//*************************************************            
+        
         case 'editar':
         $fuente = ' <?php '."\n";
         $fuente .= ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -154,7 +197,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             
             break;   
             
-//*************************************
+
         case 'index':
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -167,7 +210,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
             $fuente .= ' } '."\n";
             return $fuente;
-//*************************************************            
+           
         case 'ver':
             $fuente  =  ' <?php '."\n";
             $fuente .=  ' $pagina = "'.$nombrePlugin.'"; '."\n";
@@ -185,7 +228,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= ' } '."\n";
             return $fuente;
             break;
-//*************************************************        
+  
         default:
             $fuente = ""; 
             return $fuente;
@@ -983,8 +1026,16 @@ $menu_items = listar_directorios_ruta();
 $menu_total_items = count(listar_directorios_ruta());
 $i = 0;
 while ($i < $menu_total_items) {    
-    $activa = ($selecionado == $menu_items[$i] )? \'active\' : 0 ;    
-    echo \'<li class="\'.$activa.\'"><a href="?p=\' . $menu_items[$i] . \'&c=index">\' . ucwords($menu_items[$i]) . \'</a></li>\';
+    
+    $activa = ($selecionado == $menu_items[$i] )? \'active\' : 0 ;  
+    if($activa){
+        $clase = \' glyphicon glyphicon-folder-open \'; 
+    }else  {
+        $clase = \' glyphicon glyphicon-folder-close \'; 
+    }
+    
+    
+    echo \'<li class="\'.$activa.\'"><a href="?p=\' . $menu_items[$i] . \'&c=index"> <span class="\'.$clase.\'"></span> \' . ucwords($menu_items[$i]) . \'</a></li>\';
     
     $i++;    
 }
@@ -1612,17 +1663,24 @@ case 'raiz':
 function magia_crear_ficheros_en_proyecto($nombreProyecto){
     global $path_instalacion_plugins; 
     
-    // el index de la parte publica del proyecto
-    crear_fichero($path_instalacion_plugins, 'index.php', 'inicio');
-    
-    // primero creo las carpetas
+   
+    // preparo las carpetas a crear
     $carpetas = ['admin','config','gestion','imagenes','includes'];
     
+    // con esto creo las carpetas
+     crear_carpetas($path_instalacion_plugins, $carpetas);
+     
+    // copiamos el home en gestion y en config
+    copiar_carpeta("./codigo_fuente/config", "$path_instalacion_plugins/gestion");
+    copiar_carpeta("./codigo_fuente/config", "$path_instalacion_plugins/config");
+    copiar_carpeta("./codigo_fuente/includes", "$path_instalacion_plugins/includes");
+    
+    
+    // ahora creamos los ficheros dentro de las carpetas
+    // llenamos el contenido de los ficheros
     
     $i=0; 
     while ($i < count($carpetas)){
-        crear_carpetas($path_instalacion_plugins, $carpetas);
-        
         if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
             // creamos los ficheros denttro de cada carpeta del proyecto
             switch ($carpetas[$i]) {
@@ -1633,8 +1691,7 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                         crear_fichero("$path_instalacion_plugins/admin", $ficheros[$j], contenido_admin($ficheros[$j]));
                         $j++; 
                     }
-                    break;
-                    
+                    break;                    
                 case 'config':
                     $ficheros = ['footer.php','funciones.php','header.php','index.php','menu.php','modelo.css','z_verificar.php'];
                     $j = 0; 
@@ -1642,14 +1699,8 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                         crear_fichero("$path_instalacion_plugins/config", $ficheros[$j], contenido_config($ficheros[$j]));
                         $j++; 
                     }
-                    break;
-                    
+                    break;                    
                 case 'gestion':
-                    
-                    
-                    
-                    
-                    
                 $ficheros = ['estilo.css','index.php','z_index.php','z_login.php','z_logout.php','z_verificar.php','zz_login.php'];
                     $j = 0; 
                     while ($j < count($ficheros)) {
@@ -1657,14 +1708,14 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                         $j++; 
                     }
                     break;
-
             }
         }
         
         $i++;
     }
     
-    
+     // con esto creo el index de la parte publica del proyecto
+    crear_fichero($path_instalacion_plugins, 'index.php', 'inicio');   
 } 
 
 
