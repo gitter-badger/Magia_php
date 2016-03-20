@@ -1,1 +1,6 @@
-<?php  $servidor = "localhost"; $bdatos = "veronica"; $usuario = "root"; $clave = "";
+<?php
+
+$servidor = "localhost";
+$bdatos = "veronica";
+$usuario = "root";
+$clave = "";
