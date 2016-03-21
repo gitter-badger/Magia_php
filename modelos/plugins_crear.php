@@ -9,16 +9,23 @@ if (isset($_GET['nombrePlugin'])) {
     die("Olvido el nombre del plugin");
 }
 
-if(file_exists($path_instalacion_plugins.'/'.$nombrePlugin)){
-   echo "El plugin <b>$path_instalacion_plugins/$nombrePlugin</b>  YA existe" ; 
+
+
+
+if(file_exists($path_plugins.'/'.$nombrePlugin)){
+   echo "El plugin <b>$path_plugins/$nombrePlugin</b>  YA existe" ; 
     $existe = true;
 }
 else 
 {
     echo "<li>ok: El plugin: $nombrePlugin no existe, puede continuar</li>";
-    echo "El fichero $path_instalacion_plugins/$nombrePlugin no existe" ; 
+        
     $existe = false;
 }
+
+
+
+
 
 if($existe == FALSE){
     // creo el folder
@@ -40,13 +47,13 @@ if ($nombrePlugin) {
     $t = count($mvc); // cuenta las carpetas
 
 // creo la carpeta conel nombre delplugin
-    mkdir($path_instalacion_plugins . '/' . $nombrePlugin );
+    mkdir("$path_plugins/$nombrePlugin" );
 
     // ahora hago una repeticion creando a cada vuelta las carpetas dentro del plugin
     $i = 0; // pongo 1 para no crear elfichero raiz
     while ($i < $t) {
         if ($mvc[$i] != 'raiz') {
-            mkdir($path_instalacion_plugins . './' . $nombrePlugin . '/' . $mvc[$i] . '');
+            mkdir($path_plugins . './' . $nombrePlugin . '/' . $mvc[$i] . '');
         }
 
 

@@ -1555,7 +1555,7 @@ include "home/vista/footer.php";
  * @param type $mvcg
  */
 function magia_crear_ficheros_dentro_mvc($nombrePlugin,$mvcg){
-    global  $path_instalacion_plugins, $dbh; 
+    global  $path_plugins, $dbh; 
 
 switch ($mvcg) {
 case 'controlador':
@@ -1565,7 +1565,7 @@ case 'controlador':
         $i=0;
         while ($i<$total) {  
          
-        $destino = "$path_instalacion_plugins/$nombrePlugin/$mvcg/$c[$i].php"; 
+        $destino = "$path_plugins/$nombrePlugin/$mvcg/$c[$i].php"; 
         
         // este va a ser el contedido que vamos a escribir en el documento
         $contenido = contenido_controlador($c[$i],$nombrePlugin);
@@ -1582,7 +1582,7 @@ case 'modelos':
     $total = count($c);
     $i=0;
         while ($i<$total) {        
-         $destino = "$path_instalacion_plugins/$nombrePlugin/$mvcg/$c[$i].php"; 
+         $destino = "$path_plugins/$nombrePlugin/$mvcg/$c[$i].php"; 
                  // este va a ser el contedido que vamos a escribir en el documento
         $contenido = contenido_modelos($c[$i],$nombrePlugin );         
         //$contenido = $destino ;
@@ -1598,7 +1598,7 @@ case 'reg':
     $total = count($c);
     $i=0;
         while ($i<$total) {
-         $destino = "$path_instalacion_plugins/$nombrePlugin./$mvcg/$c[$i].php"; 
+         $destino = "$path_plugins/$nombrePlugin./$mvcg/$c[$i].php"; 
                  // este va a ser el contedido que vamos a escribir en el documento
         $contenido = contenido_reg($c[$i],$nombrePlugin );
          //$contenido = $destino ;
@@ -1614,7 +1614,7 @@ case 'vista':
     $total = count($c);
     $i=0;
         while ($i<$total) {        
-         $destino = $path_instalacion_plugins.'/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
+         $destino = $path_plugins.'/'.$nombrePlugin.'/'.$mvcg.'/'.$c[$i].'.php'; 
                  // este va a ser el contedido que vamos a escribir en el documento
         $contenido = contenido_vista($c[$i],$nombrePlugin );
         // $contenido = $destino ;
@@ -1631,7 +1631,7 @@ case 'raiz':
        $total = count($c);
        $i=0;
         while ($i<$total) {        
-            $destino = $path_instalacion_plugins.'/'.$nombrePlugin.'/'.$c[$i].''; 
+            $destino = $path_plugins.'/'.$nombrePlugin.'/'.$c[$i].''; 
            // este va a ser el contedido que vamos a escribir en el documento
           // $contenido = $destino ; 
            $contenido = contenido_plugin($c[$i],$nombrePlugin); 
@@ -1661,19 +1661,18 @@ case 'raiz':
 
 
 function magia_crear_ficheros_en_proyecto($nombreProyecto){
-    global $path_instalacion_plugins; 
+    global $path_web; 
     
    
-    // preparo las carpetas a crear
-    $carpetas = ['admin','config','gestion','imagenes','includes'];
+    // preparo las carpetas a crear    
+    $carpetas = ['admin','gestion','imagenes','includes'];
     
     // con esto creo las carpetas
-     crear_carpetas($path_instalacion_plugins, $carpetas);
+     crear_carpetas($path_web, $carpetas);
      
     // copiamos el home en gestion y en config
-    copiar_carpeta("./codigo_fuente/gestion", "$path_instalacion_plugins/gestion");
-    copiar_carpeta("./codigo_fuente/config", "$path_instalacion_plugins/config");
-    copiar_carpeta("./codigo_fuente/includes", "$path_instalacion_plugins/includes");
+    copiar_carpeta("./codigo_fuente/gestion", "$path_web/gestion");    
+    copiar_carpeta("./codigo_fuente/includes", "$path_web/includes");
     
     
     // ahora creamos los ficheros dentro de las carpetas
@@ -1681,14 +1680,14 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
     
     $i=0; 
     while ($i < count($carpetas)){
-        if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
+        if(file_exists("$path_web/$carpetas[$i]")){
             // creamos los ficheros denttro de cada carpeta del proyecto
             switch ($carpetas[$i]) {
                 case 'admin':
                     $ficheros = ['bd.php','conec.php','coneccion.php','configuracion.php','funciones.php','index.php','modelo.css','permisos.php','traductor.php'];
                     $j = 0; 
                     while ($j < count($ficheros)) {
-                        crear_fichero("$path_instalacion_plugins/admin", $ficheros[$j], contenido_admin($ficheros[$j]));
+                        crear_fichero("$path_web/admin", $ficheros[$j], contenido_admin($ficheros[$j]));
                         $j++; 
                     }
                     break;                    
@@ -1696,7 +1695,7 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                     $ficheros = ['footer.php','funciones.php','header.php','index.php','menu.php','modelo.css','z_verificar.php'];
                     $j = 0; 
                     while ($j < count($ficheros)) {
-                        crear_fichero("$path_instalacion_plugins/config", $ficheros[$j], contenido_config($ficheros[$j]));
+                        crear_fichero("$path_web/config", $ficheros[$j], contenido_config($ficheros[$j]));
                         $j++; 
                     }
                     break;                    
@@ -1704,7 +1703,7 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
                 $ficheros = ['estilo.css','index.php','z_index.php','z_login.php','z_logout.php','z_verificar.php','zz_login.php'];
                     $j = 0; 
                     while ($j < count($ficheros)) {
-                        crear_fichero("$path_instalacion_plugins/gestion",$ficheros[$j], contenido_gestion($ficheros[$j]));
+                        crear_fichero("$path_web/gestion",$ficheros[$j], contenido_gestion($ficheros[$j]));
                         $j++; 
                     }
                     break;
@@ -1715,43 +1714,9 @@ function magia_crear_ficheros_en_proyecto($nombreProyecto){
     }
     
      // con esto creo el index de la parte publica del proyecto
-    crear_fichero($path_instalacion_plugins, 'index.php', 'inicio');   
+    crear_fichero($path_web, 'index.php', 'inicio');   
 } 
 
-
-
-
-function magia_crear_ficheros_home($donde){
-    global $path_instalacion_plugins; 
-
-    $carpetas = ['home'];
-    
-    $i=0; 
-    while ($i < count($carpetas)){
-        
-        crear_carpeta($path_instalacion_plugins, $carpetas[$i]);
-        
-        if(file_exists("$path_instalacion_plugins/$carpetas[$i]")){
-            // creamos los ficheros denttro de cada carpeta del proyecto
-            switch ($carpetas[$i]) {
-                case 'home':
-                    $ficheros = ['funciones.php'];
-                    $j = 0; 
-                    while ($j < count($ficheros)) {
-                      crear_fichero("$path_instalacion_plugins/admin", $ficheros[$j], contenido_home($ficheros[$j]));
-                        $j++; 
-                    }
-                    break;
-
-
-            }
-        }
-        
-        $i++;
-    }
-    
-    
-} 
 
 
 
