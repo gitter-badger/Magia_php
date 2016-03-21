@@ -31,7 +31,7 @@
             
             <li>
                 <a href="#"><span class="glyphicon glyphicon-user"></span> 
-            Robinson <?php echo "$u_grupo";?> 
+            Robinson [<?php echo "$u_grupo";?>] 
                 </a>
             </li>
             

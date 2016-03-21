@@ -96,7 +96,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= ' $id 		= mysql_real_escape_string($_REQUEST[\'id\']); '."\n";
             $fuente .= ' include "./'.$nombrePlugin.'/modelos/borrar.php"; '."\n";
             $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'borrar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= '     permisos_sin_permiso(\'borrar\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";
             
             return $fuente;
@@ -125,7 +125,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= '     include "./'.$nombrePlugin.'/modelos/buscar.php"; '."\n";   
             $fuente .= '     include "./'.$nombrePlugin.'/vista/buscar.php"; '."\n";
             $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";    
             
             
@@ -155,7 +155,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= ' include "./'.$nombrePlugin.'/vista/crear.php";  '."\n";
             $fuente .= ' }          '."\n";   
             $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'crear\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= '     permisos_sin_permiso(\'crear\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";  
             
             
@@ -190,7 +190,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= ' }  '."\n";
        
             $fuente .= ' } else { '."\n";
-                $fuente .= ' permisos_sin_permiso(\'editar\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+                $fuente .= ' permisos_sin_permiso(\'editar\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";
 
             return $fuente;
@@ -207,7 +207,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= '     include "./'.$nombrePlugin.'/modelos/index.php"; '."\n";
             $fuente .= '     include "./'.$nombrePlugin.'/vista/index.php"; '."\n";
             $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";
             return $fuente;
            
@@ -224,7 +224,7 @@ function contenido_controlador($controlador,$nombrePlugin){
             $fuente .= '     include "./'.$nombrePlugin.'/reg/reg.php"; '."\n";
             $fuente .= '     include "./'.$nombrePlugin.'/vista/ver.php"; '."\n";
             $fuente .= ' } else { '."\n";
-            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $u_id_usuario); '."\n";
+            $fuente .= '     permisos_sin_permiso(\'ver\', \''.$nombrePlugin.'\', $login); '."\n";
             $fuente .= ' } '."\n";
             return $fuente;
             break;
