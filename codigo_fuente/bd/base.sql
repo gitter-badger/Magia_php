@@ -1,30 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
---
--- Client :  127.0.0.1
--- Généré le :  Lun 21 Mars 2016 à 06:50
--- Version du serveur :  5.6.20
--- Version de PHP :  5.5.15
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `bienes`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `grupos`
---
 
 CREATE TABLE IF NOT EXISTS `grupos` (
 `id` int(11) NOT NULL,
