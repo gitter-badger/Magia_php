@@ -1,4 +1,6 @@
 # Magia PHP
+
+[![Join the chat at https://gitter.im/robincoello/Magia_php](https://badges.gitter.im/robincoello/Magia_php.svg)](https://gitter.im/robincoello/Magia_php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 * Sistem to help you in the form creation
 * Sistema para ayudar en la creación de formularios 
 
